@@ -17,6 +17,32 @@ TODO
 
 # Answer 7 questions
 
+```{r}
+# Read in data files
+beers <- read.csv("DataFiles/beers.csv")
+breweries <- read.csv("DataFiles/breweries.csv")
+```
+
+1. How many breweries are present in each state?
+
+```{r}
+library(dplyr)
+plyr::count(breweries, 'State')
+```
+
+2. Merge beer and breweries data
+
+```{r}
+beer_data <- merge(breweries, beers, by.x='Brew_ID', by.y='Brewery_id', all=TRUE)
+head(beer_data)
+tail(beer_data)
+```
+
+3. Report number of NA's in each column
+
+```{r}
+
+```
 TODO
 
 # Conclusion
