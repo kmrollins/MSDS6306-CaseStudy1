@@ -26,22 +26,22 @@ position in the market, it is imperative that the brewing companies
 have to come up with new strategies. However, Large breweries still 
 are having the majority market share.
 
-Now this study is conducted to help one of our clients on a marketing 
-campaign. This analysis would determine certain important questions 
+Now this study will to help one of our clients on a marketing 
+campaign. This analysis will determine certain important questions 
 on the Beer and Breweries information for a calculated and appropriate 
-decision. The analysis would also include Alcoholic content and IBU 
+decision. The analysis will also include Alcoholic content and IBU 
 (international bitterness unit) to position the product with competition 
 from other beer manufacturers including craft beer industry. Enough 
 sample data is available to conduct the study/analysis.
 
 # Background
 
-Our client Budweiser limited is eager to introduce a new Beer with optimum alcoholic 
+Our client Anheuser Busch limited is eager to introduce a new Beer with optimum alcoholic 
 content (ABV) and international bitterness units (IBU), so that they can compete 
 with other breweries and position itself in the market with regards to pricing. 
 This will be an important feature in their marketing campaign and advertisement 
 for the product in the upcoming NFL halftime commercial (Most watched) with enhanced 
-visual effects.  The strategy would create awareness and curiosity around this new 
+visual effects.  The strategy will create awareness and curiosity around this new 
 beer with their consumers (Budweiser enthusiasts!).
 
 # Analysis
