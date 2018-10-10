@@ -8,12 +8,41 @@ output:
 ---
 
 
-
 # Introduction
 
-TODO
+In 2017, 83 percent of all beer was domestically produced, and 17 
+percent was imported from more than 100 different countries around 
+the world. Based on beer shipment data and U.S. Census population 
+statistics, U.S. consumers 21 years and older consumed 26.9 gallons 
+of beer and cider per person during 2017. -  
+  https://www.nbwa.org/resources/industry-fast-facts
 
-# Answer 7 questions
+Consumers have many options on the choice of beer they drink today. 
+The beer industry is saturated with regards to production and 
+consumption over the past 10 years, to ward off competition, and 
+position in the market, it is imperative that the brewing companies 
+have to come up with new strategies. However, Large breweries still 
+are having the majority market share.
+
+Now this study is conducted to help one of our clients on a marketing 
+campaign. This analysis would determine certain important questions 
+on the Beer and Breweries information for a calculated and appropriate 
+decision. The analysis would also include Alcoholic content and IBU 
+(international bitterness unit) to position the product with competition 
+from other beer manufacturers including craft beer industry. Enough 
+sample data is available to conduct the study/analysis.
+
+# Background
+
+Our client Budweiser limited is eager to introduce a new Beer with optimum alcoholic 
+content (ABV) and international bitterness units (IBU), so that they can compete 
+with other breweries and position itself in the market with regards to pricing. 
+This will be an important feature in their marketing campaign and advertisement 
+for the product in the upcoming NFL halftime commercial (Most watched) with enhanced 
+visual effects.  The strategy would create awareness and curiosity around this new 
+beer with their consumers (Budweiser enthusiasts!).
+
+# Analysis
 
 
 ```r
@@ -161,7 +190,19 @@ tail(beer_data)
 3. Report number of NA's in each column
 
 
-TODO
+```r
+# Get all the NA data from Beer Data
+sapply(beer_data, function(x) sum(is.na(x)))
+```
+
+```
+## Brew_ID  Name.x    City   State  Name.y Beer_ID     ABV     IBU   Style 
+##       0       0       0       0       0       0      62    1005       0 
+##  Ounces 
+##       0
+```
+* ABVs - 62   NULLS
+* IBUs - 1005 NULLS
 
 # Conclusion
 

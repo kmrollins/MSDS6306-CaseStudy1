@@ -131,10 +131,17 @@ $(document).ready(function () {
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>TODO</p>
+<p>In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017. -<br />
+<a href="https://www.nbwa.org/resources/industry-fast-facts" class="uri">https://www.nbwa.org/resources/industry-fast-facts</a></p>
+<p>Consumers have many options on the choice of beer they drink today. The beer industry is saturated with regards to production and consumption over the past 10 years, to ward off competition, and position in the market, it is imperative that the brewing companies have to come up with new strategies. However, Large breweries still are having the majority market share.</p>
+<p>Now this study is conducted to help one of our clients on a marketing campaign. This analysis would determine certain important questions on the Beer and Breweries information for a calculated and appropriate decision. The analysis would also include Alcoholic content and IBU (international bitterness unit) to position the product with competition from other beer manufacturers including craft beer industry. Enough sample data is available to conduct the study/analysis.</p>
 </div>
-<div id="answer-7-questions" class="section level1">
-<h1>Answer 7 questions</h1>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>Our client Budweiser limited is eager to introduce a new Beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (Most watched) with enhanced visual effects. The strategy would create awareness and curiosity around this new beer with their consumers (Budweiser enthusiasts!).</p>
+</div>
+<div id="analysis" class="section level1">
+<h1>Analysis</h1>
 <pre class="r"><code># Read in data files
 beers &lt;- read.csv(&quot;DataFiles/beers.csv&quot;)
 breweries &lt;- read.csv(&quot;DataFiles/breweries.csv&quot;)</code></pre>
@@ -247,7 +254,16 @@ head(beer_data)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Report number of NA’s in each column</li>
 </ol>
-<p>TODO</p>
+<pre class="r"><code># Get all the NA data from Beer Data
+sapply(beer_data, function(x) sum(is.na(x)))</code></pre>
+<pre><code>## Brew_ID  Name.x    City   State  Name.y Beer_ID     ABV     IBU   Style 
+##       0       0       0       0       0       0      62    1005       0 
+##  Ounces 
+##       0</code></pre>
+<ul>
+<li>ABVs - 62 NULLS</li>
+<li>IBUs - 1005 NULLS</li>
+</ul>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
