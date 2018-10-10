@@ -1,18 +1,10 @@
----
-title: "MSDS 6306 - Case Study 1 Codebook"
-author: "Anand Rajan & Kristen McCrary"
-date: "10/18/2018"
-output: 
-  html_document:
-    keep_md: yes
----
+# Codebook for Beer and Brewery Data
 
-
-#K n A Marketing Consultants, 12 Wall street, NY
+# K n A Marketing Consultants, 12 Wall street, NY
 
 *Draft - Beers and Breweries
 
-#Introduction:
+# Introduction
 
 “In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017.” -  
 https://www.nbwa.org/resources/industry-fast-facts
@@ -23,7 +15,7 @@ Now this study is conducted to help one of our clients on a marketing campaign. 
 
 # Background
 
-Our client Anheuser Busch limited and its CEO Mr Michel Doukeris is eager to introduce a new Beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market to regain its top performance slot. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (Most watched) with enhanced visual effects.  The strategy would create awareness and curiosity around this new beer with their consumers (Budweiser enthusiasts!).
+Our client Anheuser Busch limited and its CEO Mr. Michel Doukeris is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market to regain its top performance slot. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy aims to create awareness and curiosity around this new beer with their consumers (Budweiser enthusiasts!).
 
 *Company features:
 

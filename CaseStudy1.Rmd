@@ -12,70 +12,113 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # Introduction
 
-In 2017, 83 percent of all beer was domestically produced, and 17 
-percent was imported from more than 100 different countries around 
-the world. Based on beer shipment data and U.S. Census population 
-statistics, U.S. consumers 21 years and older consumed 26.9 gallons 
-of beer and cider per person during 2017. -  
-  https://www.nbwa.org/resources/industry-fast-facts
+In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017. (Source: https://www.nbwa.org/resources/industry-fast-facts)
 
-Consumers have many options on the choice of beer they drink today. 
-The beer industry is saturated with regards to production and 
-consumption over the past 10 years, to ward off competition, and 
-position in the market, it is imperative that the brewing companies 
-have to come up with new strategies. However, Large breweries still 
-are having the majority market share.
+Consumers have many options on the choice of beer they drink today. The beer industry is saturated with regards to production and consumption over the past 10 years. To ward off competition, and to earn a position in the market, it is imperative that brewing companies come up with new strategies. However, large breweries still have the majority market share.
 
-Now this study is conducted to help one of our clients on a marketing 
-campaign. This analysis would determine certain important questions 
-on the Beer and Breweries information for a calculated and appropriate 
-decision. The analysis would also include Alcoholic content and IBU 
-(international bitterness unit) to position the product with competition 
-from other beer manufacturers including craft beer industry. Enough 
-sample data is available to conduct the study/analysis.
+This study is conducted to help one of our clients on a marketing campaign. This analysis will determine certain important questions on the Beer and Breweries information for a calculated and appropriate decision. The analysis will also include alcoholic content and IBU (international bitterness unit) to position the product against competition from other beer manufacturers, including the craft beer industry. Enough sample data is available to conduct the study/analysis.
 
 # Background
 
-Our client Budweiser limited is eager to introduce a new Beer with optimum alcoholic 
-content (ABV) and international bitterness units (IBU), so that they can compete 
-with other breweries and position itself in the market with regards to pricing. 
-This will be an important feature in their marketing campaign and advertisement 
-for the product in the upcoming NFL halftime commercial (Most watched) with enhanced 
-visual effects.  The strategy would create awareness and curiosity around this new 
-beer with their consumers (Budweiser enthusiasts!).
+Our client Budweiser limited is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy aims to create awareness and curiosity around this new beer with their consumers (Budweiser enthusiasts!). 
 
 # Analysis
 
+To aid in our analysis, our client provided us with two highly relevant datasets. One dataset contains a list of 2410 craft beers brewed in the U.S., while the other contains information on 558 competing U.S. breweries. As we are using the programming language R to perform our analysis, we first have to load these datasets into R.
+
 ```{r}
-# Read in data files
+# Read in beer and brewery data files
 beers <- read.csv("DataFiles/beers.csv")
 breweries <- read.csv("DataFiles/breweries.csv")
 ```
 
-1. How many breweries are present in each state?
+#### 1. State-wise brewery counts
+
+Our client would first like to know how many breweries are present in each state. This will given the company an idea of where their competition is geographically located.
 
 ```{r}
-library(dplyr)
-plyr::count(breweries, 'State')
+# Count number of breweries in each state
+table(breweries$State)
 ```
 
-2. Merge beer and breweries data
+The table above shows the number of breweries, categorized by states in the U.S. (plus District of Columbia). For instance, there are 7 breweries in Alaska, 3 in Alabama, and so on.
+
+#### 2. Merge beer and breweries data
+
+To fully take advantage of the two datasets, we can merge them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
 
 ```{r}
+# Merge data on brewery ID fields
 beer_data <- merge(breweries, beers, by.x='Brew_ID', by.y='Brewery_id', all=TRUE)
+# Rename ambiguous columns
+names(beer_data)[c(2, 5)] <- c("Brewery_Name", "Beer_Name")
+# Display beginning and end of data frame
 head(beer_data)
 tail(beer_data)
 ```
 
-3. Report number of NA's in each column
+The above output from R shows the first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers. 
+
+#### 3. Report column NA's
+
+For our analysis, we would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
 
 ```{r}
-# Get all the NA data from Beer Data
+# Get all the NA data from beer Data
 sapply(beer_data, function(x) sum(is.na(x)))
-
 ```
-* ABVs - 62   NULLS
-* IBUs - 1005 NULLS
+
+From this output, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
+
+#### 4. Median ABV and IBU by state
+
+We would like to visualize the median alcohol content and bitterness for beers in each state. We use the ggplot2 package in R to create this visualization.
+
+```{r results='hide'}
+library(ggplot2)
+```
+```{r fig.align='center'}
+# Get median values for each state, convert to data frames
+median_ABV <- tapply(beer_data$ABV, beer_data$State, median, na.rm=TRUE)
+median_IBU <- tapply(beer_data$IBU, beer_data$State, median, na.rm=TRUE)
+median_ABV <- as.data.frame(median_ABV); median_ABV$State <- rownames(median_ABV)
+median_IBU <- as.data.frame(median_IBU); median_IBU$State <- rownames(median_IBU)
+
+# Create barchart for median ABV
+ggplot(median_ABV, aes(x=State, y=median_ABV, fill=State)) +
+  geom_bar(stat='identity', position='dodge') +
+  labs(title="Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
+  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(size=5), legend.position="none")
+
+# Create barchart for median IBU
+ggplot(median_IBU, aes(x=State, y=median_IBU, fill=State)) +
+  geom_bar(stat='identity', position='dodge') +
+  labs(title="Median Bitterness of Beers by State", x="State", y="Median IBU") +
+  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(size=5), legend.position="none")
+```
+
+TODO explain
+
+#### 5. Maximum ABV and IBU
+
+Next, we want to know the state that has the beer with the largest alcohol content, as well as the state containing the most bitter beer.
+
+```{r}
+# Get maximum alcohol content
+beer_data[which.max(beer_data$ABV), c("State", "Beer_Name", "ABV")]
+# Get maximum IBU
+beer_data[which.max(beer_data$IBU), c("State", "Beer_Name", "IBU")]
+```
+
+As seen from the results, the state of Colorado has the maximum alcoholic beer. In addition, Oregon appears to have the most bitter beer.
+
+#### 6. ABV summary statistics
+
+TODO
+
+#### 7. IBU and ABV relationship
+
+TODO
 
 # Conclusion
 
