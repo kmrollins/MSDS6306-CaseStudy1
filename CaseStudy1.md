@@ -18,7 +18,10 @@ This study will help one of our clients on a marketing campaign. This analysis w
 
 # Background
 
-Our client Anheuser Busch limited is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with their consumers (Budweiser enthusiasts!). 
+Our client Anheuser Busch is one of the top Beer producer with the following vitals to boast. 
+Head quartered in St Louis MO, the company brews more than 100 brands of beers with flag ship brands Budweiser and Budlight.
+The company also owns 23 breweries and has several craft partners to its credit. The company's revenue stands at 14 Billion dollasr per year.
+Currently our the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!). 
 
 # Analysis
 
@@ -55,7 +58,7 @@ The table above shows the number of breweries, categorized by states in the U.S.
 
 #### 2. Merge beer and breweries data
 
-To fully take advantage of the two datasets, we can merge them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
+To fully take advantage of the two datasets, we merge them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
 
 
 ```r
@@ -153,7 +156,7 @@ median_IBU <- as.data.frame(median_IBU); median_IBU$State <- rownames(median_IBU
 ggplot(median_ABV, aes(x=State, y=median_ABV, fill=State)) +
   geom_bar(stat='identity', position='dodge') +
   labs(title="Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
-  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(size=5), legend.position="none")
+  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none")
 ```
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
@@ -163,7 +166,7 @@ ggplot(median_ABV, aes(x=State, y=median_ABV, fill=State)) +
 ggplot(median_IBU, aes(x=State, y=median_IBU, fill=State)) +
   geom_bar(stat='identity', position='dodge') +
   labs(title="Median Bitterness of Beers by State", x="State", y="Median IBU") +
-  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(size=5), legend.position="none")
+  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none")
 ```
 
 ```
