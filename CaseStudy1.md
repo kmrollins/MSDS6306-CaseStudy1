@@ -153,7 +153,7 @@ median_ABV <- as.data.frame(median_ABV); median_ABV$State <- rownames(median_ABV
 median_IBU <- as.data.frame(median_IBU); median_IBU$State <- rownames(median_IBU)
 
 # Create barchart for median ABV
-ggplot(median_ABV, aes(x=State, y=median_ABV, fill=State)) +
+ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State)) +
   geom_bar(stat='identity', position='dodge') +
   labs(title="Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none")
@@ -163,7 +163,7 @@ ggplot(median_ABV, aes(x=State, y=median_ABV, fill=State)) +
 
 ```r
 # Create barchart for median IBU
-ggplot(median_IBU, aes(x=State, y=median_IBU, fill=State)) +
+ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State)) +
   geom_bar(stat='identity', position='dodge') +
   labs(title="Median Bitterness of Beers by State", x="State", y="Median IBU") +
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none")
