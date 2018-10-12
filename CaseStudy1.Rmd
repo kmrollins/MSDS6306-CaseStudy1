@@ -20,7 +20,7 @@ This study will help one of our clients on a marketing campaign. This analysis w
 
 # Background
 
-Our client Anheuser Busch limited is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with their consumers (Budweiser enthusiasts!). 
+Our client Anheuser Busch limited is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!). 
 
 # Analysis
 
@@ -45,7 +45,7 @@ The table above shows the number of breweries, categorized by states in the U.S.
 
 #### 2. Merge beer and breweries data
 
-To fully take advantage of the two datasets, we can merge them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
+To fully take advantage of the two datasets, we merge them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
 
 ```{r}
 # Merge data on brewery ID fields
