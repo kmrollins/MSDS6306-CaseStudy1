@@ -116,7 +116,7 @@ beer_data[which.max(beer_data$ABV), c("State", "Beer_Name", "ABV")]
 beer_data[which.max(beer_data$IBU), c("State", "Beer_Name", "IBU")]
 ```
 
-As seen from the results, the state of Colorado has the maximum alcoholic beer. In addition, Oregon appears to have the most bitter beer.
+As seen from the results, the state of Colorado has the maximum alcohol content in beer. In addition, Oregon appears to have the most bitter beer.
 
 #### 6. ABV summary statistics
 We will see the symmary statistics of alcohol by volume for all the beers in united states.
@@ -124,7 +124,7 @@ We will see the symmary statistics of alcohol by volume for all the beers in uni
 ```{r}
 summary(beer_data$ABV, na.rm=TRUE)
 ```
-# The summary shows the Min, the mean, median and maximum of Alcohil by volumne.
+The summary shows the Min, the mean, median and maximum of Alcohol by volume(ABV).
 In percentage of alcohol content it would be 1%, 5.6% , 5.9 % and 12.8% by volume.   
 
 #### 7. IBU and ABV relationship
