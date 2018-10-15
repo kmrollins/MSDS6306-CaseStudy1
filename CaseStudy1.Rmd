@@ -27,7 +27,7 @@ Currently our the company is eager to introduce a new beer with optimum alcoholi
 
 # Analysis
 
-To aid in our analysis, our client provided us with two highly relevant datasets. One dataset contains a list of 2410 craft beers brewed in the U.S., while the other contains information on 558 competing U.S. breweries. As we are using the programming language R to perform our analysis, we first have to load these datasets into R.
+To aid in our analysis, our client provided us with two highly relevant datasets. One dataset contains a list of 2410 craft beers brewed in the U.S., while the other contains information on 558 competing U.S. breweries. As we are using the programming language R to perform our analysis, we first have to load these datasets into R. In order to show some good analysis, we had cleaned up the data to show information where the data is available.
 
 ```{r}
 # Read in beer and brewery data files
@@ -103,8 +103,7 @@ ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State))
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
   scale_fill_manual(values=grad)
 ```
-
-TODO explain
+The alcohol content in beers by consuming states are plotted in a geometric bar graph where the highest to lowest alcohol by volumne and bitternes index is captured. We have two different plots here.
 
 #### 5. Maximum ABV and IBU
 
@@ -120,8 +119,13 @@ beer_data[which.max(beer_data$IBU), c("State", "Beer_Name", "IBU")]
 As seen from the results, the state of Colorado has the maximum alcoholic beer. In addition, Oregon appears to have the most bitter beer.
 
 #### 6. ABV summary statistics
+We will see the symmary statistics of alcohol by volume for all the beers in united states.
 
-TODO
+```{r}
+summary(beer_data$ABV, na.rm=TRUE)
+```
+# The summary shows the Min, the mean, median and maximum of Alcohil by volumne.
+In percentage of alcohol content it would be 1%, 5.6% , 5.9 % and 12.8% by volume.   
 
 #### 7. IBU and ABV relationship
 
