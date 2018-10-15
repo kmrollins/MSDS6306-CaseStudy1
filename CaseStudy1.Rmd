@@ -103,7 +103,7 @@ ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State))
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
   scale_fill_manual(values=grad)
 ```
-The alcohol content in beers by consuming states are plotted in a geometric bar graph where the highest to lowest alcohol by volumne and bitternes index is captured. We have two different plots here.
+The alcohol content in beers by consuming states are plotted in a geometric bar graph where the highest to lowest alcohol by volume and bitterness index are captured. We have two different plots one showing the median ABV and another the median IBU.
 
 #### 5. Maximum ABV and IBU
 
