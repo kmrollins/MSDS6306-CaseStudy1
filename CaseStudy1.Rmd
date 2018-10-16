@@ -41,10 +41,17 @@ Our client would first like to know how many breweries are present in each state
 
 ```{r}
 # Count number of breweries in each state
-table(breweries$State)
+#table(breweries$State)
+cdf <- plyr::count(breweries, 'State')
+colnames(cdf)<- c("State","BreweriesCount")
+datatable(cdf, options = list(
+    columnDefs = list(list(targets = 6, visible = FALSE))
+)) %>% formatStyle(
+  'State', 'BreweriesCount',
+  backgroundColor = styleEqual(c(0, 1), c('gray', 'white')))
 ```
 
-The table above shows the number of breweries, categorized by states in the U.S. (plus District of Columbia). For instance, there are 7 breweries in Alaska, 3 in Alabama, and so on.
+The table above shows the number of breweries, categorized by states in the U.S. (plus District of Columbia). For instance, there are 7 breweries in Alaska, 3 in Alabama, and so on. One can query and get details of a particular state or sort the order by number of breweries ascending or descending.
 
 #### 2. Merge beer and breweries data
 
@@ -56,8 +63,19 @@ beer_data <- merge(breweries, beers, by.x='Brew_ID', by.y='Brewery_id', all=TRUE
 # Rename ambiguous columns
 names(beer_data)[c(2, 5)] <- c("Brewery_Name", "Beer_Name")
 # Display beginning and end of data frame
-head(beer_data)
-tail(beer_data)
+hd <- head(beer_data,10)
+tl <- tail(beer_data,10)
+
+datatable(hd, options = list(
+    columnDefs = list(list(targets = 6, visible = FALSE))
+)) %>% formatStyle('Brewery_Name', 'Beer_Name',
+  backgroundColor = styleEqual(c(0, 1), c('gray', 'white'))
+)
+datatable(tl, options = list(
+    columnDefs = list(list(targets = 6, visible = FALSE))
+)) %>% formatStyle('Brewery_Name', 'Beer_Name',
+  backgroundColor = styleEqual(c(0, 1), c('gray', 'white'))
+)
 ```
 
 The above output from R shows the first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers. 
@@ -68,7 +86,8 @@ For our analysis, we would also like to know the number of NA's, i.e. missing va
 
 ```{r}
 # Get all the NA data from beer Data
-sapply(beer_data, function(x) sum(is.na(x)))
+sap <- sapply(beer_data, function(x) sum(is.na(x)))
+list(sap)
 ```
 
 From this output, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
@@ -80,7 +99,6 @@ We would like to visualize the median alcohol content and bitterness for beers i
 ```{r results='hide'}
 library(ggplot2)
 ```
-```{r fig.align='center'}
 # Get median values for each state, convert to data frames
 median_ABV <- tapply(beer_data$ABV, beer_data$State, median, na.rm=TRUE)
 median_IBU <- tapply(beer_data$IBU, beer_data$State, median, na.rm=TRUE)
@@ -91,7 +109,6 @@ median_IBU <- as.data.frame(median_IBU); median_IBU$State <- rownames(median_IBU
 grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
 # Create barchart for median ABV
 ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State)) +
-  geom_bar(stat='identity', position='dodge') +
   labs(title="Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
   scale_fill_manual(values=grad)
@@ -115,7 +132,6 @@ beer_data[which.max(beer_data$ABV), c("State", "Beer_Name", "ABV")]
 # Get maximum IBU
 beer_data[which.max(beer_data$IBU), c("State", "Beer_Name", "IBU")]
 ```
-
 As seen from the results, the state of Colorado has the maximum alcohol content in beer. In addition, Oregon appears to have the most bitter beer.
 
 #### 6. ABV summary statistics
@@ -130,8 +146,6 @@ In percentage of alcohol content it would be 1%, 5.6% , 5.9 % and 12.8% by volum
 
 #### 7. IBU and ABV relationship
 
-TODO introduce
-
 ```{r}
 # Create scatterplot
 ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU, fill="white")) + 
@@ -140,8 +154,8 @@ ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU, fill="white")) +
   theme(plot.title = element_text(hjust=0.5), legend.position="none") +
   scale_color_gradient(low = "#ffbf00", high = "brown")
 ```
-
-TODO explain
+The scatter plot shows a linear correlation between the IBU and ABV of beers.
+The more the IBU we see that the ABV is also higher barring some outliers.
 
 # Conclusion
 
