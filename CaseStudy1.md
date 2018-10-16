@@ -25,7 +25,7 @@ Currently our the company is eager to introduce a new beer with optimum alcoholi
 
 # Analysis
 
-To aid in our analysis, our client provided us with two highly relevant datasets. One dataset contains a list of 2410 craft beers brewed in the U.S., while the other contains information on 558 competing U.S. breweries. As we are using the programming language R to perform our analysis, we first have to load these datasets into R.
+To aid in our analysis, our client provided us with two highly relevant datasets. One dataset contains a list of 2410 craft beers brewed in the U.S., while the other contains information on 558 competing U.S. breweries. As we are using the programming language R to perform our analysis, we first have to load these datasets into R. In order to show some good analysis, we had cleaned up the data to show information where the data is available.
 
 
 ```r
@@ -167,19 +167,14 @@ ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State))
 ```r
 # Create barchart for median IBU
 ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State)) +
-  geom_bar(stat='identity', position='dodge') +
+  geom_bar(stat='identity', position='dodge', na.rm=TRUE) +
   labs(title="Median Bitterness of Beers by State", x="State", y="Median IBU") +
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
   scale_fill_manual(values=grad)
 ```
 
-```
-## Warning: Removed 1 rows containing missing values (geom_bar).
-```
-
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-6-2.png" style="display: block; margin: auto;" />
-
-TODO explain
+The alcohol content in beers by consuming states are plotted in a geometric bar graph where the highest to lowest alcohol by volume and bitterness index are captured. We have two different plots one showing the median ABV and another the median IBU.
 
 #### 5. Maximum ABV and IBU
 
@@ -206,15 +201,41 @@ beer_data[which.max(beer_data$IBU), c("State", "Beer_Name", "IBU")]
 ## 1857    OR Bitter Bitch Imperial IPA 138
 ```
 
-As seen from the results, the state of Colorado has the maximum alcoholic beer. In addition, Oregon appears to have the most bitter beer.
+As seen from the results, the state of Colorado has the maximum alcohol content in beer. In addition, Oregon appears to have the most bitter beer.
 
 #### 6. ABV summary statistics
 
-TODO
+We will see the symmary statistics of alcohol by volume for all the beers in the United States.
+
+
+```r
+summary(beer_data$ABV, na.rm=TRUE)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800      62
+```
+The summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV).
+In percentage of alcohol content it would be 1%, 5.6% , 5.9 % and 12.8% by volume.   
 
 #### 7. IBU and ABV relationship
 
-TODO
+TODO introduce
+
+
+```r
+# Create scatterplot
+ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU, fill="white")) + 
+  geom_point(size=1.3, na.rm=TRUE) + 
+  labs(title="Bitterness vs. Alcohol Content of Beers", x="International Bitterness Units (IBU)", y="Alcohol by Volume (ABV)") +
+  theme(plot.title = element_text(hjust=0.5), legend.position="none") +
+  scale_color_gradient(low = "#ffbf00", high = "brown")
+```
+
+![](CaseStudy1_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+
+TODO explain
 
 # Conclusion
 

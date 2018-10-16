@@ -98,7 +98,7 @@ ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State))
 
 # Create barchart for median IBU
 ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State)) +
-  geom_bar(stat='identity', position='dodge') +
+  geom_bar(stat='identity', position='dodge', na.rm=TRUE) +
   labs(title="Median Bitterness of Beers by State", x="State", y="Median IBU") +
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
   scale_fill_manual(values=grad)
@@ -119,17 +119,29 @@ beer_data[which.max(beer_data$IBU), c("State", "Beer_Name", "IBU")]
 As seen from the results, the state of Colorado has the maximum alcohol content in beer. In addition, Oregon appears to have the most bitter beer.
 
 #### 6. ABV summary statistics
-We will see the symmary statistics of alcohol by volume for all the beers in united states.
+
+We will see the symmary statistics of alcohol by volume for all the beers in the United States.
 
 ```{r}
 summary(beer_data$ABV, na.rm=TRUE)
 ```
-The summary shows the Min, the mean, median and maximum of Alcohol by volume(ABV).
+The summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV).
 In percentage of alcohol content it would be 1%, 5.6% , 5.9 % and 12.8% by volume.   
 
 #### 7. IBU and ABV relationship
 
-TODO
+TODO introduce
+
+```{r}
+# Create scatterplot
+ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU, fill="white")) + 
+  geom_point(size=1.3, na.rm=TRUE) + 
+  labs(title="Bitterness vs. Alcohol Content of Beers", x="International Bitterness Units (IBU)", y="Alcohol by Volume (ABV)") +
+  theme(plot.title = element_text(hjust=0.5), legend.position="none") +
+  scale_color_gradient(low = "#ffbf00", high = "brown")
+```
+
+TODO explain
 
 # Conclusion
 
