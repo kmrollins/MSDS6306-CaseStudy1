@@ -9,6 +9,11 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+library(DT)
 ```
 # Introduction
 
@@ -41,14 +46,11 @@ Our client would first like to know how many breweries are present in each state
 
 ```{r}
 # Count number of breweries in each state
-#table(breweries$State)
 cdf <- plyr::count(breweries, 'State')
-colnames(cdf)<- c("State","BreweriesCount")
-datatable(cdf, options = list(
-    columnDefs = list(list(targets = 6, visible = FALSE))
-)) %>% formatStyle(
-  'State', 'BreweriesCount',
-  backgroundColor = styleEqual(c(0, 1), c('gray', 'white')))
+colnames(cdf)<- c("State","NumberOfBreweries")
+
+# Create HTML table widget
+datatable(cdf)
 ```
 
 The table above shows the number of breweries, categorized by states in the U.S. (plus District of Columbia). For instance, there are 7 breweries in Alaska, 3 in Alabama, and so on. One can query and get details of a particular state or sort the order by number of breweries ascending or descending.
@@ -62,32 +64,31 @@ To fully take advantage of the two datasets, we merge them into one composite da
 beer_data <- merge(breweries, beers, by.x='Brew_ID', by.y='Brewery_id', all=TRUE)
 # Rename ambiguous columns
 names(beer_data)[c(2, 5)] <- c("Brewery_Name", "Beer_Name")
-# Display beginning and end of data frame
-hd <- head(beer_data,10)
-tl <- tail(beer_data,10)
 
-datatable(hd, options = list(
-    columnDefs = list(list(targets = 6, visible = FALSE))
-)) %>% formatStyle('Brewery_Name', 'Beer_Name',
-  backgroundColor = styleEqual(c(0, 1), c('gray', 'white'))
-)
-datatable(tl, options = list(
-    columnDefs = list(list(targets = 6, visible = FALSE))
-)) %>% formatStyle('Brewery_Name', 'Beer_Name',
-  backgroundColor = styleEqual(c(0, 1), c('gray', 'white'))
-)
+# Display beginning of merged data frame
+hd <- head(beer_data)
+datatable(hd)
+
+# Display end of merged data frame
+tl <- tail(beer_data)
+datatable(tl)
 ```
 
-The above output from R shows the first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers. 
+The above display show the first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers. Also notice that some IBU values are blank, indicating missing or unavailable values in the original datasets.
 
 #### 3. Report column NA's
 
 For our analysis, we would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
 
 ```{r}
-# Get all the NA data from beer Data
-sap <- sapply(beer_data, function(x) sum(is.na(x)))
-list(sap)
+# Get all the NA data from beer data
+na_table <- sapply(beer_data, function(x) sum(is.na(x)))
+na_df <- as.data.frame(na_table)
+na_df <- cbind(rownames(na_df), na_df)
+rownames(na_df) <- NULL
+names(na_df) <- c("Variable", "NumberOfNAs")
+# Create table for NA counts
+datatable(na_df)
 ```
 
 From this output, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
@@ -96,24 +97,23 @@ From this output, we see that there are 62 NA values in the ABV column, and 1005
 
 We would like to visualize the median alcohol content and bitterness for beers in each state. We use the ggplot2 package in R to create this visualization.
 
-```{r results='hide'}
-library(ggplot2)
-
+```{r fig.align='center'}
 # Get median values for each state, convert to data frames
 median_ABV <- tapply(beer_data$ABV, beer_data$State, median, na.rm=TRUE)
 median_IBU <- tapply(beer_data$IBU, beer_data$State, median, na.rm=TRUE)
 median_ABV <- as.data.frame(median_ABV); median_ABV$State <- rownames(median_ABV)
 median_IBU <- as.data.frame(median_IBU); median_IBU$State <- rownames(median_IBU)
 
-### Define color gradient
+# Define color gradient
 grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
-### Create barchart for median ABV
+# Create barchart for median ABV
 ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State)) +
+  geom_bar(stat='identity', position='dodge') +
   labs(title="Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
   scale_fill_manual(values=grad)
 
-### Create barchart for median IBU
+# Create barchart for median IBU
 ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State)) +
   geom_bar(stat='identity', position='dodge', na.rm=TRUE) +
   labs(title="Median Bitterness of Beers by State", x="State", y="Median IBU") +
@@ -133,6 +133,7 @@ beer_data[which.max(beer_data$ABV), c("State", "Beer_Name", "ABV")]
 # Get maximum IBU
 beer_data[which.max(beer_data$IBU), c("State", "Beer_Name", "IBU")]
 ```
+
 As seen from the results, the state of Colorado has the maximum alcohol content in beer. In addition, Oregon appears to have the most bitter beer.
 
 #### 6. ABV summary statistics
@@ -142,12 +143,13 @@ We will see the symmary statistics of alcohol by volume for all the beers in the
 ```{r}
 summary(beer_data$ABV, na.rm=TRUE)
 ```
+
 The summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV).
 In percentage of alcohol content it would be 1%, 5.6% , 5.9 % and 12.8% by volume.   
 
 #### 7. IBU and ABV relationship
 
-```{r}
+```{r fig.align='center'}
 # Create scatterplot
 ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU, fill="white")) + 
   geom_point(size=1.3, na.rm=TRUE) + 
@@ -155,6 +157,7 @@ ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU, fill="white")) +
   theme(plot.title = element_text(hjust=0.5), legend.position="none") +
   scale_color_gradient(low = "#ffbf00", high = "brown")
 ```
+
 The scatter plot shows a linear correlation between the IBU and ABV of beers.
 The more the IBU we see that the ABV is also higher barring some outliers.
 
