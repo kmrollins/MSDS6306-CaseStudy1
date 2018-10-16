@@ -45,11 +45,11 @@ cdf <- plyr::count(breweries, 'State')
 colnames(cdf)<- c("State","NumberOfBreweries")
 
 # Create HTML table widget
-datatable(cdf)
+datatable(cdf, caption="Table 1: Number of Breweries by State")
 ```
 
-<!--html_preserve--><div id="htmlwidget-bbc06ebe84acfd0e36d6" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bbc06ebe84acfd0e36d6">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51"],[" AK"," AL"," AR"," AZ"," CA"," CO"," CT"," DC"," DE"," FL"," GA"," HI"," IA"," ID"," IL"," IN"," KS"," KY"," LA"," MA"," MD"," ME"," MI"," MN"," MO"," MS"," MT"," NC"," ND"," NE"," NH"," NJ"," NM"," NV"," NY"," OH"," OK"," OR"," PA"," RI"," SC"," SD"," TN"," TX"," UT"," VA"," VT"," WA"," WI"," WV"," WY"],[7,3,2,11,39,47,8,1,2,15,7,4,5,5,18,22,3,4,5,23,7,9,32,12,9,2,9,19,1,5,3,3,4,2,16,15,6,29,25,5,4,1,3,28,4,16,10,23,20,1,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>State<\/th>\n      <th>NumberOfBreweries<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-6770e36da70053e7128a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6770e36da70053e7128a">{"x":{"filter":"none","caption":"<caption>Table 1: Number of Breweries by State<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51"],[" AK"," AL"," AR"," AZ"," CA"," CO"," CT"," DC"," DE"," FL"," GA"," HI"," IA"," ID"," IL"," IN"," KS"," KY"," LA"," MA"," MD"," ME"," MI"," MN"," MO"," MS"," MT"," NC"," ND"," NE"," NH"," NJ"," NM"," NV"," NY"," OH"," OK"," OR"," PA"," RI"," SC"," SD"," TN"," TX"," UT"," VA"," VT"," WA"," WI"," WV"," WY"],[7,3,2,11,39,47,8,1,2,15,7,4,5,5,18,22,3,4,5,23,7,9,32,12,9,2,9,19,1,5,3,3,4,2,16,15,6,29,25,5,4,1,3,28,4,16,10,23,20,1,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>State<\/th>\n      <th>NumberOfBreweries<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 The table above shows the number of breweries, categorized by states in the U.S. (plus District of Columbia). For instance, there are 7 breweries in Alaska, 3 in Alabama, and so on. One can query and get details of a particular state or sort the order by number of breweries ascending or descending.
 
@@ -66,22 +66,22 @@ names(beer_data)[c(2, 5)] <- c("Brewery_Name", "Beer_Name")
 
 # Display beginning of merged data frame
 hd <- head(beer_data)
-datatable(hd)
+datatable(hd, caption="Table 2: Beginning of Merged Data Frame")
 ```
 
-<!--html_preserve--><div id="htmlwidget-c55c9292a00b33f410a1" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c55c9292a00b33f410a1">{"x":{"filter":"none","data":[["1","2","3","4","5","6"],[1,1,1,1,1,1],["NorthGate Brewing ","NorthGate Brewing ","NorthGate Brewing ","NorthGate Brewing ","NorthGate Brewing ","NorthGate Brewing "],["Minneapolis","Minneapolis","Minneapolis","Minneapolis","Minneapolis","Minneapolis"],[" MN"," MN"," MN"," MN"," MN"," MN"],["Pumpion","Stronghold","Parapet ESB","Get Together","Maggie's Leap","Wall's End"],[2689,2688,2687,2692,2691,2690],[0.06,0.06,0.056,0.045,0.049,0.048],[38,25,47,50,26,19],["Pumpkin Ale","American Porter","Extra Special / Strong Bitter (ESB)","American IPA","Milk / Sweet Stout","English Brown Ale"],[16,16,16,16,16,16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Brew_ID<\/th>\n      <th>Brewery_Name<\/th>\n      <th>City<\/th>\n      <th>State<\/th>\n      <th>Beer_Name<\/th>\n      <th>Beer_ID<\/th>\n      <th>ABV<\/th>\n      <th>IBU<\/th>\n      <th>Style<\/th>\n      <th>Ounces<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,6,7,8,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-a46161441b689b0ec3ba" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a46161441b689b0ec3ba">{"x":{"filter":"none","caption":"<caption>Table 2: Beginning of Merged Data Frame<\/caption>","data":[["1","2","3","4","5","6"],[1,1,1,1,1,1],["NorthGate Brewing ","NorthGate Brewing ","NorthGate Brewing ","NorthGate Brewing ","NorthGate Brewing ","NorthGate Brewing "],["Minneapolis","Minneapolis","Minneapolis","Minneapolis","Minneapolis","Minneapolis"],[" MN"," MN"," MN"," MN"," MN"," MN"],["Pumpion","Stronghold","Parapet ESB","Get Together","Maggie's Leap","Wall's End"],[2689,2688,2687,2692,2691,2690],[0.06,0.06,0.056,0.045,0.049,0.048],[38,25,47,50,26,19],["Pumpkin Ale","American Porter","Extra Special / Strong Bitter (ESB)","American IPA","Milk / Sweet Stout","English Brown Ale"],[16,16,16,16,16,16]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Brew_ID<\/th>\n      <th>Brewery_Name<\/th>\n      <th>City<\/th>\n      <th>State<\/th>\n      <th>Beer_Name<\/th>\n      <th>Beer_ID<\/th>\n      <th>ABV<\/th>\n      <th>IBU<\/th>\n      <th>Style<\/th>\n      <th>Ounces<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,6,7,8,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 ```r
 # Display end of merged data frame
 tl <- tail(beer_data)
-datatable(tl)
+datatable(tl, caption="Table 3: End of Merged Data Frame")
 ```
 
-<!--html_preserve--><div id="htmlwidget-831466ec30cbe29bb9e5" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-831466ec30cbe29bb9e5">{"x":{"filter":"none","data":[["2405","2406","2407","2408","2409","2410"],[556,557,557,557,557,558],["Ukiah Brewing Company","Butternuts Beer and Ale","Butternuts Beer and Ale","Butternuts Beer and Ale","Butternuts Beer and Ale","Sleeping Lady Brewing Company"],["Ukiah","Garrattsville","Garrattsville","Garrattsville","Garrattsville","Anchorage"],[" CA"," NY"," NY"," NY"," NY"," AK"],["Pilsner Ukiah","Porkslap Pale Ale","Snapperhead IPA","Moo Thunder Stout","Heinnieweisse Weissebier","Urban Wilderness Pale Ale"],[98,49,51,50,52,30],[0.055,0.043,0.068,0.049,0.049,0.049],[null,null,null,null,null,null],["German Pilsener","American Pale Ale (APA)","American IPA","Milk / Sweet Stout","Hefeweizen","English Pale Ale"],[12,12,12,12,12,12]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Brew_ID<\/th>\n      <th>Brewery_Name<\/th>\n      <th>City<\/th>\n      <th>State<\/th>\n      <th>Beer_Name<\/th>\n      <th>Beer_ID<\/th>\n      <th>ABV<\/th>\n      <th>IBU<\/th>\n      <th>Style<\/th>\n      <th>Ounces<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,6,7,8,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-a60d84335b05a9f4fde8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a60d84335b05a9f4fde8">{"x":{"filter":"none","caption":"<caption>Table 3: End of Merged Data Frame<\/caption>","data":[["2405","2406","2407","2408","2409","2410"],[556,557,557,557,557,558],["Ukiah Brewing Company","Butternuts Beer and Ale","Butternuts Beer and Ale","Butternuts Beer and Ale","Butternuts Beer and Ale","Sleeping Lady Brewing Company"],["Ukiah","Garrattsville","Garrattsville","Garrattsville","Garrattsville","Anchorage"],[" CA"," NY"," NY"," NY"," NY"," AK"],["Pilsner Ukiah","Porkslap Pale Ale","Snapperhead IPA","Moo Thunder Stout","Heinnieweisse Weissebier","Urban Wilderness Pale Ale"],[98,49,51,50,52,30],[0.055,0.043,0.068,0.049,0.049,0.049],[null,null,null,null,null,null],["German Pilsener","American Pale Ale (APA)","American IPA","Milk / Sweet Stout","Hefeweizen","English Pale Ale"],[12,12,12,12,12,12]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Brew_ID<\/th>\n      <th>Brewery_Name<\/th>\n      <th>City<\/th>\n      <th>State<\/th>\n      <th>Beer_Name<\/th>\n      <th>Beer_ID<\/th>\n      <th>ABV<\/th>\n      <th>IBU<\/th>\n      <th>Style<\/th>\n      <th>Ounces<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,6,7,8,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
-The above display show the first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers. Also notice that some IBU values are blank, indicating missing or unavailable values in the original datasets.
+The above displays show the first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers. Also notice that some IBU values are blank, indicating missing or unavailable values in the original datasets.
 
 #### 3. Report column NA's
 
@@ -96,13 +96,13 @@ na_df <- cbind(rownames(na_df), na_df)
 rownames(na_df) <- NULL
 names(na_df) <- c("Variable", "NumberOfNAs")
 # Create table for NA counts
-datatable(na_df)
+datatable(na_df, caption="Table 4: Beer Data Variables - NA Counts")
 ```
 
-<!--html_preserve--><div id="htmlwidget-88f9a376673bd452d642" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-88f9a376673bd452d642">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10"],["Brew_ID","Brewery_Name","City","State","Beer_Name","Beer_ID","ABV","IBU","Style","Ounces"],[0,0,0,0,0,0,62,1005,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>NumberOfNAs<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-3ed27abb615dc84fe86d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3ed27abb615dc84fe86d">{"x":{"filter":"none","caption":"<caption>Table 4: Beer Data Variables - NA Counts<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],["Brew_ID","Brewery_Name","City","State","Beer_Name","Beer_ID","ABV","IBU","Style","Ounces"],[0,0,0,0,0,0,62,1005,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Variable<\/th>\n      <th>NumberOfNAs<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
-From this output, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
+From this table, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
 
 #### 4. Median ABV and IBU by state
 
@@ -115,6 +115,8 @@ median_ABV <- tapply(beer_data$ABV, beer_data$State, median, na.rm=TRUE)
 median_IBU <- tapply(beer_data$IBU, beer_data$State, median, na.rm=TRUE)
 median_ABV <- as.data.frame(median_ABV); median_ABV$State <- rownames(median_ABV)
 median_IBU <- as.data.frame(median_IBU); median_IBU$State <- rownames(median_IBU)
+# Remove South Dakota since no IBU data was available
+median_IBU <- subset(median_IBU, State!=" SD")
 
 # Define color gradient
 grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
@@ -122,11 +124,15 @@ grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
 ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State)) +
   geom_bar(stat='identity', position='dodge') +
   labs(title="Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
-  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
+  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), 
+        legend.position="none") +     
   scale_fill_manual(values=grad)
 ```
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 1: Median ABV by State"  />
+<p class="caption">Figure 1: Median ABV by State</p>
+</div>
 
 ```r
 # Create barchart for median IBU
@@ -137,9 +143,12 @@ ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State))
   scale_fill_manual(values=grad)
 ```
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-5-2.png" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-5-2.png" alt="Figure 2: Median IBU by State"  />
+<p class="caption">Figure 2: Median IBU by State</p>
+</div>
 
-The alcohol content in beers by consuming states are plotted in a geometric bar graph where the highest to lowest alcohol by volume and bitterness index are captured. We have two different plots one showing the median ABV and another the median IBU.
+The alcohol content in beers by consuming states are plotted in a geometric bar graph where the highest to lowest alcohol by volume and bitterness index are captured. We have two different plots, Figure 1 showing the median ABV and Figure 2 visualizing the median IBU. Note that South Dakota is missing from Figure 2, because there was no data available on bitterness of beers in that state.
 
 #### 5. Maximum ABV and IBU
 
@@ -182,25 +191,27 @@ summary(beer_data$ABV, na.rm=TRUE)
 ## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800      62
 ```
 
-The summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV).
-In percentage of alcohol content it would be 1%, 5.6% , 5.9 % and 12.8% by volume.   
+This summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 1%, 5.6% , 5.9% and 12.8% by volume.   
 
 #### 7. IBU and ABV relationship
 
 
 ```r
 # Create scatterplot
-ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU, fill="white")) + 
+ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) + 
   geom_point(size=1.3, na.rm=TRUE) + 
+  geom_smooth(method=lm, na.rm=TRUE, se=FALSE, color="brown") +
   labs(title="Bitterness vs. Alcohol Content of Beers", x="International Bitterness Units (IBU)", y="Alcohol by Volume (ABV)") +
   theme(plot.title = element_text(hjust=0.5), legend.position="none") +
   scale_color_gradient(low = "#ffbf00", high = "brown")
 ```
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-8-1.png" alt="Figure 3: ABV vs. IBU"  />
+<p class="caption">Figure 3: ABV vs. IBU</p>
+</div>
 
-The scatter plot shows a linear correlation between the IBU and ABV of beers.
-The more the IBU we see that the ABV is also higher barring some outliers.
+The scatter plot in Figure 3 shows a moderately strong positive linear correlation between the IBU and ABV of beers. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
 
 # Conclusion
 

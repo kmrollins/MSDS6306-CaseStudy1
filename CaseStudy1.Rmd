@@ -50,7 +50,7 @@ cdf <- plyr::count(breweries, 'State')
 colnames(cdf)<- c("State","NumberOfBreweries")
 
 # Create HTML table widget
-datatable(cdf)
+datatable(cdf, caption="Table 1: Number of Breweries by State")
 ```
 
 The table above shows the number of breweries, categorized by states in the U.S. (plus District of Columbia). For instance, there are 7 breweries in Alaska, 3 in Alabama, and so on. One can query and get details of a particular state or sort the order by number of breweries ascending or descending.
@@ -67,14 +67,14 @@ names(beer_data)[c(2, 5)] <- c("Brewery_Name", "Beer_Name")
 
 # Display beginning of merged data frame
 hd <- head(beer_data)
-datatable(hd)
+datatable(hd, caption="Table 2: Beginning of Merged Data Frame")
 
 # Display end of merged data frame
 tl <- tail(beer_data)
-datatable(tl)
+datatable(tl, caption="Table 3: End of Merged Data Frame")
 ```
 
-The above display show the first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers. Also notice that some IBU values are blank, indicating missing or unavailable values in the original datasets.
+The above displays show the first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers. Also notice that some IBU values are blank, indicating missing or unavailable values in the original datasets.
 
 #### 3. Report column NA's
 
@@ -88,21 +88,23 @@ na_df <- cbind(rownames(na_df), na_df)
 rownames(na_df) <- NULL
 names(na_df) <- c("Variable", "NumberOfNAs")
 # Create table for NA counts
-datatable(na_df)
+datatable(na_df, caption="Table 4: Beer Data Variables - NA Counts")
 ```
 
-From this output, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
+From this table, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
 
 #### 4. Median ABV and IBU by state
 
 We would like to visualize the median alcohol content and bitterness for beers in each state. We use the ggplot2 package in R to create this visualization.
 
-```{r fig.align='center'}
+```{r fig.align='center', fig.cap=c("Figure 1: Median ABV by State", "Figure 2: Median IBU by State")}
 # Get median values for each state, convert to data frames
 median_ABV <- tapply(beer_data$ABV, beer_data$State, median, na.rm=TRUE)
 median_IBU <- tapply(beer_data$IBU, beer_data$State, median, na.rm=TRUE)
 median_ABV <- as.data.frame(median_ABV); median_ABV$State <- rownames(median_ABV)
 median_IBU <- as.data.frame(median_IBU); median_IBU$State <- rownames(median_IBU)
+# Remove South Dakota since no IBU data was available
+median_IBU <- subset(median_IBU, State!=" SD")
 
 # Define color gradient
 grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
@@ -110,7 +112,8 @@ grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
 ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State)) +
   geom_bar(stat='identity', position='dodge') +
   labs(title="Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
-  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
+  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), 
+        legend.position="none") +     
   scale_fill_manual(values=grad)
 
 # Create barchart for median IBU
@@ -121,7 +124,7 @@ ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State))
   scale_fill_manual(values=grad)
 ```
 
-The alcohol content in beers by consuming states are plotted in a geometric bar graph where the highest to lowest alcohol by volume and bitterness index are captured. We have two different plots one showing the median ABV and another the median IBU.
+The alcohol content in beers by consuming states are plotted in a geometric bar graph where the highest to lowest alcohol by volume and bitterness index are captured. We have two different plots, Figure 1 showing the median ABV and Figure 2 visualizing the median IBU. Note that South Dakota is missing from Figure 2, because there was no data available on bitterness of beers in that state.
 
 #### 5. Maximum ABV and IBU
 
@@ -144,22 +147,21 @@ We will see the symmary statistics of alcohol by volume for all the beers in the
 summary(beer_data$ABV, na.rm=TRUE)
 ```
 
-The summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV).
-In percentage of alcohol content it would be 1%, 5.6% , 5.9 % and 12.8% by volume.   
+This summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 1%, 5.6% , 5.9% and 12.8% by volume.   
 
 #### 7. IBU and ABV relationship
 
-```{r fig.align='center'}
+```{r fig.align='center', fig.cap="Figure 3: ABV vs. IBU"}
 # Create scatterplot
-ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU, fill="white")) + 
+ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) + 
   geom_point(size=1.3, na.rm=TRUE) + 
+  geom_smooth(method=lm, na.rm=TRUE, se=FALSE, color="brown") +
   labs(title="Bitterness vs. Alcohol Content of Beers", x="International Bitterness Units (IBU)", y="Alcohol by Volume (ABV)") +
   theme(plot.title = element_text(hjust=0.5), legend.position="none") +
   scale_color_gradient(low = "#ffbf00", high = "brown")
 ```
 
-The scatter plot shows a linear correlation between the IBU and ABV of beers.
-The more the IBU we see that the ABV is also higher barring some outliers.
+The scatter plot in Figure 3 shows a moderately strong positive linear correlation between the IBU and ABV of beers. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
 
 # Conclusion
 
