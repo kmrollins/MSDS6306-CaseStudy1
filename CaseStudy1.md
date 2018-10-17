@@ -8,6 +8,7 @@ output:
 ---
 
 
+
 # Introduction
 
 In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017. (Source: https://www.nbwa.org/resources/industry-fast-facts)
@@ -28,33 +29,10 @@ Currently the company is eager to introduce a new beer with optimum alcoholic co
 To aid in our analysis, our client provided us with two highly relevant datasets. One dataset contains a list of 2410 craft beers brewed in the U.S., while the other contains information on 558 competing U.S. breweries. As we are using the programming language R to perform our analysis, we first have to load these datasets into R. In order to show some good analysis, we had cleaned up the data to show information where the data is available.
 
 
-```r
-# Read in beer and brewery data files
-beers <- read.csv("DataFiles/beers.csv")
-breweries <- read.csv("DataFiles/breweries.csv")
-```
 
 #### 1. State-wise brewery counts
 
 Our client would first like to know how many breweries are present in each state. This will give the company an idea of where their competition is geographically located.
-
-
-```r
-# Count number of breweries in each state
-cdf <- plyr::count(breweries, 'State')
-names(cdf)<- c("State", "NumBreweries")
-
-# Define color gradient
-grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
-
-# Create barchart for breweries per state
-ggplot(cdf, aes(x=reorder(State, -NumBreweries), y=NumBreweries, fill=State)) +
-  geom_bar(stat='identity', position='dodge') +
-  labs(title="Figure 1: Number of Breweries per State", x="State", y="Number of Breweries") +
-  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), 
-        legend.position="none") +     
-  scale_fill_manual(values=grad)
-```
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
@@ -63,19 +41,6 @@ The Figure 1 barchart shows the number of breweries categorized by states in the
 #### 2. Merge beer and breweries data
 
 To fully take advantage of the two datasets, we merge them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
-
-
-```r
-# Merge data on brewery ID fields
-beer_data <- merge(breweries, beers, by.x='Brew_ID', by.y='Brewery_id', all=TRUE)
-# Rename ambiguous columns
-names(beer_data)[c(2, 5)] <- c("Brewery_Name", "Beer_Name")
-
-# Display beginning of merged data frame
-# Hide ID fields, not necessary for client to see
-hd <- select(head(beer_data), -Brew_ID, -Beer_ID)
-kable(hd, row.names=FALSE, caption="Table 1: Beginning of Merged Data Frame")
-```
 
 <table>
 <caption>Table 1: Beginning of Merged Data Frame</caption>
@@ -154,13 +119,6 @@ kable(hd, row.names=FALSE, caption="Table 1: Beginning of Merged Data Frame")
   </tr>
 </tbody>
 </table>
-
-```r
-# Display end of merged data frame 
-# Hide ID fields, not necessary for client to see
-tl <- select(tail(beer_data), -Brew_ID, -Beer_ID) # Hide ID fields
-kable(tl, row.names=FALSE, caption="Table 2: End of Merged Data Frame")
-```
 
 <table>
 <caption>Table 2: End of Merged Data Frame</caption>
@@ -246,15 +204,6 @@ Table 1 and Table 2 show the first and last six observations of the combined fil
 
 For our analysis, we would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
 
-
-```r
-# Get all the NAs from beer data
-na_table <- sapply(beer_data, function(x) sum(is.na(x)))
-# Create "kable" of values
-kbl <- kable(na_table, col.names="Number of NAs", caption="Table 3: NA Counts")
-kable_styling(kbl, full_width=FALSE)
-```
-
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 3: NA Counts</caption>
  <thead>
@@ -313,54 +262,13 @@ From Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's
 
 We would now like to visualize the median alcohol content and bitterness for beers in each state. 
 
-
-```r
-# Get median values for each state, convert to data frames
-median_ABV <- tapply(beer_data$ABV, beer_data$State, median, na.rm=TRUE)
-median_IBU <- tapply(beer_data$IBU, beer_data$State, median, na.rm=TRUE)
-median_ABV <- as.data.frame(median_ABV); median_ABV$State <- rownames(median_ABV)
-median_IBU <- as.data.frame(median_IBU); median_IBU$State <- rownames(median_IBU)
-# Remove South Dakota since no IBU data was available
-median_IBU <- subset(median_IBU, State!=" SD")
-
-# Define color gradient
-grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
-
-# Create barchart for median ABV
-ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State)) +
-  geom_bar(stat='identity', position='dodge') +
-  labs(title="Figure 2: Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
-  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), 
-        legend.position="none") +     
-  scale_fill_manual(values=grad)
-```
-
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
-
-```r
-# Create barchart for median IBU
-ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State)) +
-  geom_bar(stat='identity', position='dodge', na.rm=TRUE) +
-  labs(title="Figure 3: Median Bitterness of Beers by State", x="State", y="Median IBU") +
-  theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
-  scale_fill_manual(values=grad)
-```
-
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-5-2.png" style="display: block; margin: auto;" />
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /><img src="CaseStudy1_files/figure-html/unnamed-chunk-5-2.png" style="display: block; margin: auto;" />
 
 The alcohol content in beers by consuming states are plotted in a geometric bar graph, capturing the highest to lowest alcohol by volume and bitterness index. We have two different plots, Figure 1 showing the median ABV and Figure 2 visualizing the median IBU. Note that South Dakota is missing from Figure 2, because there was no data available on bitterness of beers in that state.
 
 #### 5. Maximum ABV and IBU
 
 Next, we want to know the state that has the beer with the largest alcohol content, as well as the state containing the most bitter beer. 
-
-
-```r
-# Get top 3 beers for alcohol content
-max_ABV <- beer_data[order(beer_data$ABV, decreasing=TRUE), c("State", "Beer_Name", "ABV", "Brewery_Name")] %>% head(n=3)
-kbl <- kable(max_ABV, row.names=FALSE, caption="Table 4: Highest ABV")
-kable_styling(kbl, full_width=FALSE)
-```
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 4: Highest ABV</caption>
@@ -393,13 +301,6 @@ kable_styling(kbl, full_width=FALSE)
   </tr>
 </tbody>
 </table>
-
-```r
-# Get top 3 most bitter beers
-max_IBU <- beer_data[order(beer_data$IBU, decreasing=TRUE), c("State", "Beer_Name", "IBU", "Brewery_Name")] %>% head(n=3)
-kbl <- kable(max_IBU, row.names=FALSE, caption="Table 5: Highest IBU")
-kable_styling(kbl, full_width=FALSE)
-```
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 5: Highest IBU</caption>
@@ -440,10 +341,6 @@ As seen from the Table 4, the state of Colorado has the maximum alcohol content 
 We will see the summary statistics of alcohol by volume for all beers in the United States.
 
 
-```r
-summary(beer_data$ABV)
-```
-
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 ## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800      62
@@ -452,17 +349,6 @@ summary(beer_data$ABV)
 This summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 1%, 5.6% , 5.9% and 12.8% by volume.   
 
 #### 7. IBU and ABV relationship
-
-
-```r
-# Create scatterplot
-ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) + 
-  geom_point(size=1.3, na.rm=TRUE) + 
-  geom_smooth(method=lm, na.rm=TRUE, se=FALSE, color="brown") +
-  labs(title="Figure 4: Bitterness vs. Alcohol Content of Beers", x="International Bitterness Units (IBU)", y="Alcohol by Volume (ABV)") +
-  theme(plot.title = element_text(hjust=0.5), legend.position="none") +
-  scale_color_gradient(low = "#ffbf00", high = "brown")
-```
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
