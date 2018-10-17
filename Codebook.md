@@ -84,10 +84,46 @@ The two files have common identifier in brewery id which can be used to
 identify the records between the two files for merging operation.
 The relationship cardinality between breweries to beers is one to many.
 
-# Count number of breweries in each state
+#### Count number of breweries in each state
+* Create table with state and number of breweries (using kable) Table 1.
+* Define color gradient gg plot geom bar for statewise number of breweries (Figure 1)
+The table shows the number of breweries, categorized by states in the U.S. (plus District of Columbia) in descending order from highest to lowest.
 
+#### Merge beer and breweries data
+
+The two datasets were merged into one composite dataset. They can be combined because each beer is brewed at,or at least associated with, a particular brewery.Since they have a common id in brewery id that acts as a link between the two datasets.
+
+#### Display beginning of merged data frame 
+Table 2a: shows beginning few rows of Merged Data Frame
+
+
+#### Display tail end of merged data frame 
+Table 2b: shows few rows from the end of Merged Data Frame
+
+#### Report column NA's - table 3
+Table 3: shows the columns with counts of number of occurance of NA i.e. missing values, in each column.
+From this table, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column.
+
+#### Median ABV and IBU by state - Summary statistics.
+*Get median values for each state, convert to data frames
+*Remove South Dakota since no IBU data was available
+
+####Create a ggplot using geom bar plotting the graph on median ABV.
+Figure 2: Median Alcohol Content of Beers by State"
+
+####Create a ggplot using geom bar plotting the graph on median IBU.
+Figure 3: Median Bitterness of Beers by State"
+
+#### States with Maximum ABV and IBU
+Determine the state that has the beer with the largest alcohol content, as well as the state where the most bitter beer is brewed.
+
+####We will see the summary statistics of alcohol by volume for all the beers in the United States.
+This shows the mean, median , minimum and maximum values of ABV across the beers.
+
+#### 7. IBU and ABV relationship
+This shows the linear relationship of the Bitterness of beer to the alcohol content by volume in each beer category.
 
 # Recommendations:
 
-
+Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries.
 
