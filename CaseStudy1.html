@@ -138,7 +138,7 @@ $(document).ready(function () {
 </div>
 <div id="background" class="section level1">
 <h1>Background</h1>
-<p>Our client Anheuser Busch is one of the top Beer producer with the following vitals to boast. Head quartered in St Louis MO, the company brews more than 100 brands of beers with flag ship brands Budweiser and Budlight. The company also owns 23 breweries and has several craft partners to its credit. The company’s revenue stands at 14 Billion dollasr per year. Currently our the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!).</p>
+<p>Our client Anheuser Busch is one of the top Beer producer with the following vitals to boast. Head quartered in St Louis MO, the company brews more than 100 brands of beers with flag ship brands Budweiser and Budlight. The company also owns 23 breweries and has several craft partners to its credit. The company’s revenue stands at 14 Billion dollasr per year. Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!).</p>
 </div>
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
@@ -777,11 +777,11 @@ Tin Man Brewing Company
 </table>
 <pre class="r"><code># Get top 3 most bitter beers
 max_IBU &lt;- beer_data[order(beer_data$IBU, decreasing=TRUE), c(&quot;State&quot;, &quot;Beer_Name&quot;, &quot;IBU&quot;, &quot;Brewery_Name&quot;)] %&gt;% head(n=3)
-kbl &lt;- kable(max_IBU, row.names=FALSE, caption=&quot;Table 5: Highest ABV&quot;)
+kbl &lt;- kable(max_IBU, row.names=FALSE, caption=&quot;Table 5: Highest IBU&quot;)
 kable_styling(kbl, full_width=FALSE)</code></pre>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Table 5: Highest ABV
+Table 5: Highest IBU
 </caption>
 <thead>
 <tr>
@@ -869,7 +869,7 @@ ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) +
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
-<p>Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries. The new product should have optimum ABV and BTU to satisfy the current consumer trends in beer drinking as they prefer like Light lagers and craft products.</p>
+<p>Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries. The new product should have optimum ABV and IBU to satisfy the current consumer trends in beer drinking as they prefer like light lagers and craft products.</p>
 </div>
 
 

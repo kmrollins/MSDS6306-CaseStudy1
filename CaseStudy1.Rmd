@@ -29,7 +29,7 @@ This study will help one of our clients on a marketing campaign. This analysis w
 Our client Anheuser Busch is one of the top Beer producer with the following vitals to boast. 
 Head quartered in St Louis MO, the company brews more than 100 brands of beers with flag ship brands Budweiser and Budlight.
 The company also owns 23 breweries and has several craft partners to its credit. The company's revenue stands at 14 Billion dollasr per year.
-Currently our the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!). 
+Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!). 
 
 # Analysis
 
@@ -45,7 +45,7 @@ breweries <- read.csv("DataFiles/breweries.csv")
 
 Our client would first like to know how many breweries are present in each state. This will give the company an idea of where their competition is geographically located.
 
-```{r fig.align='center'}
+```{r fig.align="center"}
 # Count number of breweries in each state
 cdf <- plyr::count(breweries, 'State')
 names(cdf)<- c("State", "NumBreweries")
@@ -105,7 +105,7 @@ From Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's
 
 We would now like to visualize the median alcohol content and bitterness for beers in each state. 
 
-```{r fig.align='center'}
+```{r fig.align="center"}
 # Get median values for each state, convert to data frames
 median_ABV <- tapply(beer_data$ABV, beer_data$State, median, na.rm=TRUE)
 median_IBU <- tapply(beer_data$IBU, beer_data$State, median, na.rm=TRUE)
@@ -147,7 +147,7 @@ kable_styling(kbl, full_width=FALSE)
 
 # Get top 3 most bitter beers
 max_IBU <- beer_data[order(beer_data$IBU, decreasing=TRUE), c("State", "Beer_Name", "IBU", "Brewery_Name")] %>% head(n=3)
-kbl <- kable(max_IBU, row.names=FALSE, caption="Table 5: Highest ABV")
+kbl <- kable(max_IBU, row.names=FALSE, caption="Table 5: Highest IBU")
 kable_styling(kbl, full_width=FALSE)
 ```
 
@@ -165,7 +165,7 @@ This summary shows the minimum, the mean, median and maximum of alcohol by volum
 
 #### 7. IBU and ABV relationship
 
-```{r fig.align='center'}
+```{r fig.align="center"}
 # Create scatterplot
 ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) + 
   geom_point(size=1.3, na.rm=TRUE) + 
@@ -179,4 +179,4 @@ The scatter plot in Figure 4 shows a moderately strong positive linear correlati
 
 # Conclusion
 
-Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries. The new product should have optimum ABV and BTU to satisfy the current consumer trends in beer drinking as they prefer like Light lagers and craft products.
+Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries. The new product should have optimum ABV and IBU to satisfy the current consumer trends in beer drinking as they prefer like light lagers and craft products.

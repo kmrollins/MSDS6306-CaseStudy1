@@ -21,7 +21,7 @@ This study will help one of our clients on a marketing campaign. This analysis w
 Our client Anheuser Busch is one of the top Beer producer with the following vitals to boast. 
 Head quartered in St Louis MO, the company brews more than 100 brands of beers with flag ship brands Budweiser and Budlight.
 The company also owns 23 breweries and has several craft partners to its credit. The company's revenue stands at 14 Billion dollasr per year.
-Currently our the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!). 
+Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!). 
 
 # Analysis
 
@@ -397,12 +397,12 @@ kable_styling(kbl, full_width=FALSE)
 ```r
 # Get top 3 most bitter beers
 max_IBU <- beer_data[order(beer_data$IBU, decreasing=TRUE), c("State", "Beer_Name", "IBU", "Brewery_Name")] %>% head(n=3)
-kbl <- kable(max_IBU, row.names=FALSE, caption="Table 5: Highest ABV")
+kbl <- kable(max_IBU, row.names=FALSE, caption="Table 5: Highest IBU")
 kable_styling(kbl, full_width=FALSE)
 ```
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>Table 5: Highest ABV</caption>
+<caption>Table 5: Highest IBU</caption>
  <thead>
   <tr>
    <th style="text-align:left;"> State </th>
@@ -470,4 +470,4 @@ The scatter plot in Figure 4 shows a moderately strong positive linear correlati
 
 # Conclusion
 
-Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries. The new product should have optimum ABV and BTU to satisfy the current consumer trends in beer drinking as they prefer like Light lagers and craft products.
+Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries. The new product should have optimum ABV and IBU to satisfy the current consumer trends in beer drinking as they prefer like light lagers and craft products.
