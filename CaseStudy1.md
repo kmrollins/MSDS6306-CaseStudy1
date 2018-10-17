@@ -58,7 +58,7 @@ ggplot(cdf, aes(x=reorder(State, -NumBreweries), y=NumBreweries, fill=State)) +
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
-The barchart above shows the number of breweries categorized by states in the U.S. (plus District of Columbia). We see that Colorado leads with 47 breweries, followed by California and Michigan. 
+The Figure 1 barchart shows the number of breweries categorized by states in the U.S. (plus District of Columbia). We see that Colorado leads with 47 breweries, followed by California and Michigan. 
 
 #### 2. Merge beer and breweries data
 
@@ -466,8 +466,8 @@ ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) +
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
-The scatter plot in Figure 3 shows a moderately strong positive linear correlation between the IBU and ABV of beers. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
+The scatter plot in Figure 4 shows a moderately strong positive linear correlation between the IBU and ABV of beers. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
 
 # Conclusion
 
-TODO
+Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries. The new product should have optimum ABV and BTU to satisfy the current consumer trends in beer drinking as they prefer like Light lagers and craft products.
