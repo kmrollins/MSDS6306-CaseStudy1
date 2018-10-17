@@ -42,7 +42,7 @@ The Figure 1 barchart shows the number of breweries categorized by states in the
 
 To fully take advantage of the two datasets, we merge them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>Table 1: Beginning of Merged Data Frame</caption>
  <thead>
   <tr>
@@ -120,7 +120,7 @@ To fully take advantage of the two datasets, we merge them into one composite da
 </tbody>
 </table>
 
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>Table 2: End of Merged Data Frame</caption>
  <thead>
   <tr>
@@ -340,13 +340,47 @@ As seen from the Table 4, the state of Colorado has the maximum alcohol content 
 
 We will see the summary statistics of alcohol by volume for all beers in the United States.
 
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Table 6: ABV Summary Statistics</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Statistic </th>
+   <th style="text-align:right;"> ABV Value </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Min. </td>
+   <td style="text-align:right;"> 0.001 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1st Qu. </td>
+   <td style="text-align:right;"> 0.050 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Median </td>
+   <td style="text-align:right;"> 0.056 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mean </td>
+   <td style="text-align:right;"> 0.060 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 3rd Qu. </td>
+   <td style="text-align:right;"> 0.067 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Max. </td>
+   <td style="text-align:right;"> 0.128 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> NA's </td>
+   <td style="text-align:right;"> 62.000 </td>
+  </tr>
+</tbody>
+</table>
 
-```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800      62
-```
-
-This summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 1%, 5.6% , 5.9% and 12.8% by volume.   
+The summary in Table 6 includes the minimum, median, mean, and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 1%, 5.6% , 5.9% and 12.8% by volume.   
 
 #### 7. IBU and ABV relationship
 
