@@ -45,7 +45,6 @@ We have come up with some salient information on the data to present to the CEO 
 
 4.	Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
 
-5.	Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
 
 6.	Summary statistics for the ABV variable.
 
@@ -67,6 +66,32 @@ svn rev        74947
 language       R                           
 version.string R version 3.5.1 (2018-07-02)
 nickname       Feather Spray      
+
+#### Input files for the study.
+Two input files were used for the study.
+1. Beers.csv
+This file contains the following columns.
+Beer Name,
+Beer_ID,
+ABV(alcohol by volume),
+IBU(International Bitterness Unit),
+Brewery_id,
+Style,
+Ounces
+From this file we had to eliminate records that did not have enough data available for ABV and IBU.
+
+2. Breweries.csv
+This file contains the following attributes
+Brew_Id (identifier for brewery - numeric),
+Name(Name of the brewery),
+City,
+State
+
+For this analysis we mostly used a merged data set that contained all the fields on the key value from both the files (Brew_id and Brewery_id).
+
+
+The merged frame had the following columns:
+Brew_ID,	Brewery_Name,	City,	State,	Beer_Name,	Beer_ID,	ABV,	IBU,	Style,	Ounces
 
 ####Libraries loaded:
 
@@ -96,7 +121,6 @@ The two datasets were merged into one composite dataset. They can be combined be
 #### Display beginning of merged data frame 
 Table 2a: shows beginning few rows of Merged Data Frame
 
-
 #### Display tail end of merged data frame 
 Table 2b: shows few rows from the end of Merged Data Frame
 
@@ -125,5 +149,5 @@ This shows the linear relationship of the Bitterness of beer to the alcohol cont
 
 # Recommendations:
 
-Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries.
+Considering the information given and the market trends thus analyzed so far, the conclusion is that the CEO can take a decision on launching a new product in collaboration with the craft beer breweries.
 
