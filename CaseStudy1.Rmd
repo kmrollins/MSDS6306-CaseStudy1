@@ -100,12 +100,7 @@ na_table <- sapply(beer_data, function(x) sum(is.na(x)))
 kbl <- kable(na_table, col.names="Number of NAs")
 kable_styling(kbl, full_width=FALSE)
 
-#na_df <- as.data.frame(na_table)
-#na_df <- cbind(rownames(na_df), na_df)
-#rownames(na_df) <- NULL
-#names(na_df) <- c("Variable", "NumberOfNAs")
-# Create table for NA counts
-#datatable(na_df, caption="Table 4: Beer Data Variables - NA Counts")
+
 ```
 
 From this table, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
@@ -182,4 +177,4 @@ The scatter plot in Figure 3 shows a moderately strong positive linear correlati
 
 # Conclusion
 
-TODO
+Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries. The new product should have optimum ABV and BTU to satisfy the current consumer trends in beer drinking as they prefer like Light lagers and craft products.
