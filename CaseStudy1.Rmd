@@ -13,7 +13,6 @@ knitr::opts_chunk$set(echo = TRUE)
 # Load necessary libraries
 library(ggplot2)
 library(dplyr)
-library(DT)
 library(knitr)
 library(kableExtra)
 ```
@@ -44,18 +43,16 @@ breweries <- read.csv("DataFiles/breweries.csv")
 
 #### 1. State-wise brewery counts
 
-Our client would first like to know how many breweries are present in each state. This will given the company an idea of where their competition is geographically located.
+Our client would first like to know how many breweries are present in each state. This will give the company an idea of where their competition is geographically located.
 
-```{r}
+```{r fig.align='center'}
 # Count number of breweries in each state
 cdf <- plyr::count(breweries, 'State')
-colnames(cdf)<- c("State","NumBreweries")
-
-# Create HTML table widget
-#datatable(cdf, caption="Table 1: Number of Breweries by State")
+names(cdf)<- c("State", "NumBreweries")
 
 # Define color gradient
 grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
+
 # Create barchart for breweries per state
 ggplot(cdf, aes(x=reorder(State, -NumBreweries), y=NumBreweries, fill=State)) +
   geom_bar(stat='identity', position='dodge') +
@@ -65,7 +62,7 @@ ggplot(cdf, aes(x=reorder(State, -NumBreweries), y=NumBreweries, fill=State)) +
   scale_fill_manual(values=grad)
 ```
 
-(*change if we decide on barchart*) The table above shows the number of breweries, categorized by states in the U.S. (plus District of Columbia). For instance, there are 7 breweries in Alaska, 3 in Alabama, and so on. One can query and get details of a particular state or sort the order by number of breweries ascending or descending. (*change if we decide on barchart*)
+The barchart above shows the number of breweries categorized by states in the U.S. (plus District of Columbia). We see that Colorado leads with 47 breweries, followed by California and Michigan. 
 
 #### 2. Merge beer and breweries data
 
@@ -78,41 +75,35 @@ beer_data <- merge(breweries, beers, by.x='Brew_ID', by.y='Brewery_id', all=TRUE
 names(beer_data)[c(2, 5)] <- c("Brewery_Name", "Beer_Name")
 
 # Display beginning of merged data frame
-hd <- head(beer_data)
+# Hide ID fields, not necessary for client to see
+hd <- select(head(beer_data), -Brew_ID, -Beer_ID)
 kable(hd, row.names=FALSE, caption="Table 1: Beginning of Merged Data Frame")
-#datatable(hd, caption="Table 2: Beginning of Merged Data Frame")
 
-# Display end of merged data frame
-tl <- tail(beer_data)
+# Display end of merged data frame 
+# Hide ID fields, not necessary for client to see
+tl <- select(tail(beer_data), -Brew_ID, -Beer_ID) # Hide ID fields
 kable(tl, row.names=FALSE, caption="Table 2: End of Merged Data Frame")
-#datatable(tl, caption="Table 3: End of Merged Data Frame")
 ```
 
-The above displays show the first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers. Also notice that some IBU values are blank, indicating missing or unavailable values in the original datasets.
+Table 1 and Table 2 show the first and last six observations of the combined file, repectively, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers.
 
 #### 3. Report column NA's
 
 For our analysis, we would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
 
 ```{r}
-# Get all the NA data from beer data
+# Get all the NAs from beer data
 na_table <- sapply(beer_data, function(x) sum(is.na(x)))
-kbl <- kable(na_table, col.names="Number of NAs")
+# Create "kable" of values
+kbl <- kable(na_table, col.names="Number of NAs", caption="Table 3: NA Counts")
 kable_styling(kbl, full_width=FALSE)
-
-#na_df <- as.data.frame(na_table)
-#na_df <- cbind(rownames(na_df), na_df)
-#rownames(na_df) <- NULL
-#names(na_df) <- c("Variable", "NumberOfNAs")
-# Create table for NA counts
-#datatable(na_df, caption="Table 4: Beer Data Variables - NA Counts")
 ```
 
-From this table, we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
+From Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
 
 #### 4. Median ABV and IBU by state
 
-We would like to visualize the median alcohol content and bitterness for beers in each state. We use the ggplot2 package in R to create this visualization.
+We would now like to visualize the median alcohol content and bitterness for beers in each state. 
 
 ```{r fig.align='center'}
 # Get median values for each state, convert to data frames
@@ -125,6 +116,7 @@ median_IBU <- subset(median_IBU, State!=" SD")
 
 # Define color gradient
 grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
+
 # Create barchart for median ABV
 ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State)) +
   geom_bar(stat='identity', position='dodge') +
@@ -141,27 +133,32 @@ ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State))
   scale_fill_manual(values=grad)
 ```
 
-The alcohol content in beers by consuming states are plotted in a geometric bar graph where the highest to lowest alcohol by volume and bitterness index are captured. We have two different plots, Figure 1 showing the median ABV and Figure 2 visualizing the median IBU. Note that South Dakota is missing from Figure 2, because there was no data available on bitterness of beers in that state.
+The alcohol content in beers by consuming states are plotted in a geometric bar graph, capturing the highest to lowest alcohol by volume and bitterness index. We have two different plots, Figure 1 showing the median ABV and Figure 2 visualizing the median IBU. Note that South Dakota is missing from Figure 2, because there was no data available on bitterness of beers in that state.
 
 #### 5. Maximum ABV and IBU
 
-Next, we want to know the state that has the beer with the largest alcohol content, as well as the state containing the most bitter beer.
+Next, we want to know the state that has the beer with the largest alcohol content, as well as the state containing the most bitter beer. 
 
 ```{r}
-# Get maximum alcohol content
-beer_data[which.max(beer_data$ABV), c("State", "Beer_Name", "ABV")]
-# Get maximum IBU
-beer_data[which.max(beer_data$IBU), c("State", "Beer_Name", "IBU")]
+# Get top 3 beers for alcohol content
+max_ABV <- beer_data[order(beer_data$ABV, decreasing=TRUE), c("State", "Beer_Name", "ABV", "Brewery_Name")] %>% head(n=3)
+kbl <- kable(max_ABV, row.names=FALSE, caption="Table 4: Highest ABV")
+kable_styling(kbl, full_width=FALSE)
+
+# Get top 3 most bitter beers
+max_IBU <- beer_data[order(beer_data$IBU, decreasing=TRUE), c("State", "Beer_Name", "IBU", "Brewery_Name")] %>% head(n=3)
+kbl <- kable(max_IBU, row.names=FALSE, caption="Table 5: Highest ABV")
+kable_styling(kbl, full_width=FALSE)
 ```
 
-As seen from the results, the state of Colorado has the maximum alcohol content in beer. In addition, Oregon appears to have the most bitter beer.
+As seen from the Table 4, the state of Colorado has the maximum alcohol content for beers at 12.8%. In addition, from Table 5 we see that Oregon has the most bitter beer at 138 bitterness units.
 
 #### 6. ABV summary statistics
 
-We will see the symmary statistics of alcohol by volume for all the beers in the United States.
+We will see the summary statistics of alcohol by volume for all beers in the United States.
 
 ```{r}
-summary(beer_data$ABV, na.rm=TRUE)
+summary(beer_data$ABV)
 ```
 
 This summary shows the minimum, the mean, median and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 1%, 5.6% , 5.9% and 12.8% by volume.   
