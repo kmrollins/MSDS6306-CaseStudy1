@@ -174,9 +174,12 @@ ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) +
   labs(title="Figure 4: Bitterness vs. Alcohol Content of Beers", x="International Bitterness Units (IBU)", y="Alcohol by Volume (ABV)") +
   theme(plot.title = element_text(hjust=0.5), legend.position="none") +
   scale_color_gradient(low = "#ffbf00", high = "brown")
+
+# Get correlation coefficient
+with(beer_data, cor.test(IBU, ABV))
 ```
 
-The scatter plot in Figure 4 shows a moderately strong positive linear correlation between the IBU and ABV of beers. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
+The scatter plot in Figure 4 shows a moderately strong positive linear correlation between the IBU and ABV of beers, which is supported by the correlation coefficient of 0.67. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
 
 # Conclusion
 

@@ -352,7 +352,21 @@ This summary shows the minimum, the mean, median and maximum of alcohol by volum
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
-The scatter plot in Figure 4 shows a moderately strong positive linear correlation between the IBU and ABV of beers. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  IBU and ABV
+## t = 33.863, df = 1403, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.6407982 0.6984238
+## sample estimates:
+##       cor 
+## 0.6706215
+```
+
+The scatter plot in Figure 4 shows a moderately strong positive linear correlation between the IBU and ABV of beers, which is supported by the correlation coefficient of 0.67. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
 
 # Conclusion
 
