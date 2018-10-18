@@ -19,7 +19,7 @@ library(kableExtra)
 
 # Introduction
 
-In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017. (Source: https://www.nbwa.org/resources/industry-fast-facts)
+"In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017." (Source: https://www.nbwa.org/resources/industry-fast-facts)
 
 Consumers have many options on the choice of beer they drink today. The beer industry is saturated with regards to production and consumption over the past 10 years. To ward off competition, and to earn a position in the market, it is imperative that brewing companies come up with new strategies. However, large breweries still have the majority market share.
 
@@ -27,10 +27,10 @@ This study will help one of our clients on a marketing campaign. This analysis w
 
 # Background
 
-Our client Anheuser Busch is one of the top Beer producer with the following vitals to boast. 
+Our client Anheuser Busch is one of the top beer producers with the following vitals to boast. 
 Head quartered in St Louis MO, the company brews more than 100 brands of beers with flag ship brands Budweiser and Budlight.
 The company also owns 23 breweries and has several craft partners to its credit. The company's revenue stands at 14 Billion dollasr per year.
-Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!). 
+Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers (Budweiser enthusiasts!). 
 
 # Analysis
 
@@ -92,15 +92,24 @@ Table 1 and Table 2 show the first and last six observations of the combined fil
 
 For our analysis, we would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
 
-```{r}
+```{r fig.align="center"}
 # Get all the NAs from beer data
 na_table <- sapply(beer_data, function(x) sum(is.na(x)))
+na_df <- as.data.frame(na_table)
+
+# Create bar chart of missing values
+ggplot(na_df, aes(x=reorder(rownames(na_df), na_table), y=na_table)) + 
+  geom_bar(stat='identity', position='dodge', fill="darkred", color="darkred") +
+  coord_flip() +
+  labs(title="Figure 2: Missing Values", x="Variable", y="Number of NAs") +
+  theme(plot.title = element_text(hjust=0.5), legend.position="none") 
+
 # Create "kable" of values
 kbl <- kable(na_table, col.names="Number of NAs", caption="Table 3: NA Counts")
 kable_styling(kbl, full_width=FALSE)
 ```
 
-From Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
+From Figure 2 and Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables. 
 
 #### 4. Median ABV and IBU by state
 
@@ -121,7 +130,7 @@ grad <- scales::seq_gradient_pal("brown", "yellow")(seq(0,1,length.out=51))
 # Create barchart for median ABV
 ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State)) +
   geom_bar(stat='identity', position='dodge') +
-  labs(title="Figure 2: Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
+  labs(title="Figure 3: Median Alcohol Content of Beers by State", x="State", y="Median ABV") +
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), 
         legend.position="none") +     
   scale_fill_manual(values=grad)
@@ -129,12 +138,12 @@ ggplot(median_ABV, aes(x=reorder(State, -median_ABV), y=median_ABV, fill=State))
 # Create barchart for median IBU
 ggplot(median_IBU, aes(x=reorder(State, -median_IBU), y=median_IBU, fill=State)) +
   geom_bar(stat='identity', position='dodge', na.rm=TRUE) +
-  labs(title="Figure 3: Median Bitterness of Beers by State", x="State", y="Median IBU") +
+  labs(title="Figure 4: Median Bitterness of Beers by State", x="State", y="Median IBU") +
   theme(plot.title = element_text(hjust=0.5), axis.text.x=element_text(angle=90, size=7), legend.position="none") +     
   scale_fill_manual(values=grad)
 ```
 
-The alcohol content in beers by consuming states are plotted in a geometric bar graph, capturing the highest to lowest alcohol by volume and bitterness index. We have two different plots, Figure 1 showing the median ABV and Figure 2 visualizing the median IBU. Note that South Dakota is missing from Figure 2, because there was no data available on bitterness of beers in that state.
+The alcohol content in beers by consuming states are plotted in a geometric bar graph, capturing the highest to lowest alcohol by volume and bitterness index. We have two different plots, Figure 3 showing the median ABV and Figure 4 visualizing the median IBU. Note that South Dakota is missing from Figure 4, because there was no data available on bitterness of beers in that state.
 
 #### 5. Maximum ABV and IBU
 
@@ -158,13 +167,24 @@ As seen from the Table 4, the state of Colorado has the maximum alcohol content 
 
 We will see the summary statistics of alcohol by volume for all beers in the United States.
 
-```{r}
+```{r fig.align="center"}
+# Get summary statistics
 sum <- as.array(summary(beer_data$ABV)) %>% round(3)
+
+# Make boxplot
+#31394d
+ggplot(beer_data, aes(y=ABV, x="")) + 
+  geom_boxplot(na.rm=TRUE, width=0.4, color="#31394d") +
+  coord_flip() +
+  labs(title="Figure 5: Alcohol Content Summary", x="", y="Alcohol by Volume (ABV)") +
+  theme(plot.title = element_text(hjust=0.5))
+
+# Make table of values
 kbl <- kable(sum, col.names=c("Statistic", "ABV Value"), caption="Table 6: ABV Summary Statistics") 
 kable_styling(kbl, full_width=FALSE)
 ```
 
-The summary in Table 6 includes the minimum, median, mean, and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 1%, 5.6% , 5.9% and 12.8% by volume.   
+The boxplot in Figure 5 and summary in Table 6 includes the minimum, median, mean, and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 0.1%, 5.6% , 6% and 12.8% by volume, respectively.
 
 #### 7. IBU and ABV relationship
 
@@ -173,7 +193,7 @@ The summary in Table 6 includes the minimum, median, mean, and maximum of alcoho
 ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) + 
   geom_point(size=1.3, na.rm=TRUE) + 
   geom_smooth(method=lm, na.rm=TRUE, se=FALSE, color="brown") +
-  labs(title="Figure 4: Bitterness vs. Alcohol Content of Beers", x="International Bitterness Units (IBU)", y="Alcohol by Volume (ABV)") +
+  labs(title="Figure 6: Alcohol Content vs. Bitterness of Beers", x="International Bitterness Units (IBU)", y="Alcohol by Volume (ABV)") +
   theme(plot.title = element_text(hjust=0.5), legend.position="none") +
   scale_color_gradient(low = "#ffbf00", high = "brown")
 
@@ -181,7 +201,7 @@ ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) +
 with(beer_data, cor.test(IBU, ABV))
 ```
 
-The scatter plot in Figure 4 shows a moderately strong positive linear correlation between the IBU and ABV of beers, which is supported by the correlation coefficient of 0.67. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
+The scatter plot in Figure 6 shows a moderately strong positive linear correlation between the IBU and ABV of beers, which is supported by the correlation coefficient of 0.67. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
 
 # Conclusion
 

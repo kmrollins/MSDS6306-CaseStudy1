@@ -11,7 +11,7 @@ output:
 
 # Introduction
 
-In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017. (Source: https://www.nbwa.org/resources/industry-fast-facts)
+"In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017." (Source: https://www.nbwa.org/resources/industry-fast-facts)
 
 Consumers have many options on the choice of beer they drink today. The beer industry is saturated with regards to production and consumption over the past 10 years. To ward off competition, and to earn a position in the market, it is imperative that brewing companies come up with new strategies. However, large breweries still have the majority market share.
 
@@ -19,10 +19,10 @@ This study will help one of our clients on a marketing campaign. This analysis w
 
 # Background
 
-Our client Anheuser Busch is one of the top Beer producer with the following vitals to boast. 
+Our client Anheuser Busch is one of the top beer producers with the following vitals to boast. 
 Head quartered in St Louis MO, the company brews more than 100 brands of beers with flag ship brands Budweiser and Budlight.
 The company also owns 23 breweries and has several craft partners to its credit. The company's revenue stands at 14 Billion dollasr per year.
-Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers(Budweiser enthusiasts!). 
+Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers (Budweiser enthusiasts!). 
 
 # Analysis
 
@@ -204,7 +204,7 @@ Table 1 and Table 2 show the first and last six observations of the combined fil
 
 For our analysis, we would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 3: NA Counts</caption>
  <thead>
   <tr>
@@ -256,7 +256,7 @@ For our analysis, we would also like to know the number of NA's, i.e. missing va
 </tbody>
 </table>
 
-From Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables.
+From Figure 2 and Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables. 
 
 #### 4. Median ABV and IBU by state
 
@@ -264,7 +264,7 @@ We would now like to visualize the median alcohol content and bitterness for bee
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /><img src="CaseStudy1_files/figure-html/unnamed-chunk-5-2.png" style="display: block; margin: auto;" />
 
-The alcohol content in beers by consuming states are plotted in a geometric bar graph, capturing the highest to lowest alcohol by volume and bitterness index. We have two different plots, Figure 1 showing the median ABV and Figure 2 visualizing the median IBU. Note that South Dakota is missing from Figure 2, because there was no data available on bitterness of beers in that state.
+The alcohol content in beers by consuming states are plotted in a geometric bar graph, capturing the highest to lowest alcohol by volume and bitterness index. We have two different plots, Figure 3 showing the median ABV and Figure 4 visualizing the median IBU. Note that South Dakota is missing from Figure 4, because there was no data available on bitterness of beers in that state.
 
 #### 5. Maximum ABV and IBU
 
@@ -340,7 +340,7 @@ As seen from the Table 4, the state of Colorado has the maximum alcohol content 
 
 We will see the summary statistics of alcohol by volume for all beers in the United States.
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 6: ABV Summary Statistics</caption>
  <thead>
   <tr>
@@ -380,7 +380,7 @@ We will see the summary statistics of alcohol by volume for all beers in the Uni
 </tbody>
 </table>
 
-The summary in Table 6 includes the minimum, median, mean, and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 1%, 5.6% , 5.9% and 12.8% by volume.   
+The boxplot in Figure 5 and summary in Table 6 includes the minimum, median, mean, and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 0.1%, 5.6% , 6% and 12.8% by volume, respectively.
 
 #### 7. IBU and ABV relationship
 
@@ -400,7 +400,7 @@ The summary in Table 6 includes the minimum, median, mean, and maximum of alcoho
 ## 0.6706215
 ```
 
-The scatter plot in Figure 4 shows a moderately strong positive linear correlation between the IBU and ABV of beers, which is supported by the correlation coefficient of 0.67. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
+The scatter plot in Figure 6 shows a moderately strong positive linear correlation between the IBU and ABV of beers, which is supported by the correlation coefficient of 0.67. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
 
 # Conclusion
 
