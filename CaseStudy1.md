@@ -42,7 +42,7 @@ The Figure 1 barchart shows the number of breweries categorized by states in the
 
 To fully take advantage of the two datasets, we merge them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table-bordered" style="margin-left: auto; margin-right: auto;">
 <caption>Table 1: Beginning of Merged Data Frame</caption>
  <thead>
   <tr>
@@ -120,7 +120,7 @@ To fully take advantage of the two datasets, we merge them into one composite da
 </tbody>
 </table>
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table-bordered" style="margin-left: auto; margin-right: auto;">
 <caption>Table 2: End of Merged Data Frame</caption>
  <thead>
   <tr>
@@ -204,7 +204,7 @@ Table 1 and Table 2 show the first and last six observations of the combined fil
 
 For our analysis, we would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /><table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 3: NA Counts</caption>
  <thead>
   <tr>
@@ -270,7 +270,7 @@ The alcohol content in beers by consuming states are plotted in a geometric bar 
 
 Next, we want to know the state that has the beer with the largest alcohol content, as well as the state containing the most bitter beer. 
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 4: Highest ABV</caption>
  <thead>
   <tr>
@@ -302,7 +302,7 @@ Next, we want to know the state that has the beer with the largest alcohol conte
 </tbody>
 </table>
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 5: Highest IBU</caption>
  <thead>
   <tr>
@@ -340,7 +340,7 @@ As seen from the Table 4, the state of Colorado has the maximum alcohol content 
 
 We will see the summary statistics of alcohol by volume for all beers in the United States.
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /><table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 6: ABV Summary Statistics</caption>
  <thead>
   <tr>
@@ -350,32 +350,32 @@ We will see the summary statistics of alcohol by volume for all beers in the Uni
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Min. </td>
-   <td style="text-align:right;"> 0.001 </td>
+   <td style="text-align:left;width: 2.75cm; "> Min. </td>
+   <td style="text-align:right;width: 2.75cm; "> 0.001 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 1st Qu. </td>
-   <td style="text-align:right;"> 0.050 </td>
+   <td style="text-align:left;width: 2.75cm; "> 1st Qu. </td>
+   <td style="text-align:right;width: 2.75cm; "> 0.050 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Median </td>
-   <td style="text-align:right;"> 0.056 </td>
+   <td style="text-align:left;width: 2.75cm; "> Median </td>
+   <td style="text-align:right;width: 2.75cm; "> 0.056 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mean </td>
-   <td style="text-align:right;"> 0.060 </td>
+   <td style="text-align:left;width: 2.75cm; "> Mean </td>
+   <td style="text-align:right;width: 2.75cm; "> 0.060 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> 3rd Qu. </td>
-   <td style="text-align:right;"> 0.067 </td>
+   <td style="text-align:left;width: 2.75cm; "> 3rd Qu. </td>
+   <td style="text-align:right;width: 2.75cm; "> 0.067 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Max. </td>
-   <td style="text-align:right;"> 0.128 </td>
+   <td style="text-align:left;width: 2.75cm; "> Max. </td>
+   <td style="text-align:right;width: 2.75cm; "> 0.128 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> NA's </td>
-   <td style="text-align:right;"> 62.000 </td>
+   <td style="text-align:left;width: 2.75cm; "> NA's </td>
+   <td style="text-align:right;width: 2.75cm; "> 62.000 </td>
   </tr>
 </tbody>
 </table>
