@@ -171,10 +171,10 @@ We will see the summary statistics of alcohol by volume for all beers in the Uni
 # Get summary statistics
 sum <- as.array(summary(beer_data$ABV)) %>% round(3)
 
-# Make boxplot
-#31394d
+# Make boxplot, including mean
 ggplot(beer_data, aes(y=ABV, x="")) + 
   geom_boxplot(na.rm=TRUE, width=0.4, color="#31394d") +
+  stat_summary(fun.y=mean, na.rm=TRUE, geom="point", colour="darkred") +
   coord_flip() +
   labs(title="Figure 5: Alcohol Content Summary", x="", y="Alcohol by Volume (ABV)") +
   theme(plot.title = element_text(hjust=0.5))
