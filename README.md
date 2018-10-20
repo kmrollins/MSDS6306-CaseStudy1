@@ -3,11 +3,6 @@
 
 The Purpose of this project is to present a report to our client Anheuser-Busch Ltd and its CEO Mr. Michel Doukeris on the findings.
 This will enable our client a choice of a new product line to position the company against competition and regain the reigns as King of Beers!
-#Presented on 10/18/2018
-created power point presentations
-Analysis included 7 questions by CEO answered in that order
-along with a conclusion on the findings.
-#Completed 10/19/2018
 
 # Questions to be addressed
 
@@ -23,20 +18,20 @@ Our client presented us with 7 questions, all of which will be answered through 
 
 # File Organization
 
-Folders:
+**Folders:**
 * CaseStudy1_files - Contains images of plots used in our analysis
 * DataFiles - Contains the original beer and brewery data provided by our client
 * PresentationSlides - Contains slides used in supplemental video presentations
 
 As we performed our analysis in R, we used the *knitr* package to combine the code with our explanations and analysis. There are several files with the same name but different file extensions, each with a different purpose.
 
-CaseStudy.* Files:
+**CaseStudy.\* Files:**
 * .Rmd - Rmarkdown document with all of our R code and full analysis
 * .md - Markdown document with our full analysis excluding code, knitted from Rmarkdown, viewable on GitHub
 * .html - HTML version of our full analysis excluding code, knitted from Rmarkdown
 	* Here is the [link](http://htmlpreview.github.io/?https://github.com/mccraryk/MSDS6306-CaseStudy1/blob/master/CaseStudy1.html) to view the rendered HTML document, to be submitted to CEO
 
-Additional Files:
+**Additional Files:**
 * Codebook.md - Detailed description of our R code used for analysis
 * Readme.md - This document, describing the purpose and structure of the project
 
@@ -44,7 +39,7 @@ Additional Files:
 
 The sole contributors for this project are Anand Rajan and Kristen McCrary. Here we detail what each contributor worked on within the project.
 
-Anand:
+**Anand:**
 
 * Readme - equal contributor
 * Codebook - primary contributor
@@ -58,7 +53,7 @@ Anand:
 	* Question 4 - graph formatting
 	* Question 6 - get summary statistics
 
-Kristen:
+**Kristen:**
 
 * Readme - equal contributor
 * Codebook - secondary contributor
