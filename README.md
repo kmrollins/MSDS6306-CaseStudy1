@@ -43,20 +43,23 @@ The sole contributors for this project are Anand Rajan and Kristen McCrary. Here
 
 * Readme - equal contributor
 * Codebook - primary contributor
+* Presentation slides - equal contributor
 * Case Study:
 	* Introduction and Background - primary contributor
 	* Code explanations - equal contributor
 	* Conclusion - equal contributor
 * Code:
 	* Question 1 - get brewery counts
-	* Question 3 - get NA values
+	* Question 3 - get NA values, tables
 	* Question 4 - graph formatting
+	* Question 5 - tables
 	* Question 6 - get summary statistics
 
 **Kristen:**
 
 * Readme - equal contributor
 * Codebook - secondary contributor
+* Presentation slides - equal contributor
 * Case Study:
 	* Introduction and Background - secondary contributor
 	* Code explanations - equal contributor
@@ -84,6 +87,6 @@ By performing data analysis to answer relevant questions presented in the study,
 
 The write-up for this study is supplemented by video presentations from both consultants of K n A Marketing. The links are provided below.
 
-Anand: TODO
+Anand: For Video presentation here is the [link](https://youtu.be/YwA7hsq_Fx0)
 
 Kristen: TODO
