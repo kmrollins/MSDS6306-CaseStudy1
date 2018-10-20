@@ -22,7 +22,7 @@ This study will help one of our clients on a marketing campaign. This analysis w
 Our client Anheuser Busch is one of the top beer producers with the following vitals to boast. 
 Head quartered in St Louis MO, the company brews more than 100 brands of beers with flag ship brands Budweiser and Budlight.
 The company also owns 23 breweries and has several craft partners to its credit. The company's revenue stands at 14 Billion dollars per year.
-Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. This will be an important feature in their marketing campaign and advertisement for the product in the upcoming NFL halftime commercial (most watched) with enhanced visual effects. The strategy will create awareness and curiosity around this new beer with the consumers (Budweiser enthusiasts!). 
+Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. 
 
 # Analysis
 
