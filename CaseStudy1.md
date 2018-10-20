@@ -1,7 +1,7 @@
 ---
-title: "MSDS 6306 - Case Study 1"
-author: "Anand Rajan & Kristen McCrary"
-date: "10/18/2018"
+title: "Beer and Brewery Case Study"
+author: "K n A Marketing Consultants"
+date: "October 18, 2018"
 output: 
   html_document:
     keep_md: yes
@@ -11,22 +11,23 @@ output:
 
 # Introduction
 
-"In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017." (Source: https://www.nbwa.org/resources/industry-fast-facts)
+> In 2017, 83 percent of all beer was domestically produced, and 17 percent was imported from more than 100 different countries around the world. 
+> Based on beer shipment data and U.S. Census population statistics, U.S. consumers 21 years and older consumed 26.9 gallons of beer and cider per person during 2017. <cite>-- [National Beer Wholesalers Association](https://www.nbwa.org/resources/industry-fast-facts)</cite>
 
 Consumers have many options on the choice of beer they drink today. The beer industry is saturated with regards to production and consumption over the past 10 years. To ward off competition, and to earn a position in the market, it is imperative that brewing companies come up with new strategies. However, large breweries still have the majority market share.
 
-This study will help one of our clients on a marketing campaign. This analysis will determine certain important questions on the Beer and Breweries information for a calculated and appropriate decision. The analysis will also include alcoholic content and IBU (international bitterness unit) to position the product against competition from other beer manufacturers, including the craft beer industry. Enough sample data is available to conduct the study/analysis.
+This study will help one of our clients on a marketing campaign. This analysis will determine important questions regarding beer and breweries information for a calculated and appropriate decision. The analysis will also include alcoholic content and bitterness measurements to position the product against competition from other beer manufacturers, including the craft beer industry. Sufficient sample data is available to conduct the study.
 
 # Background
 
-Our client Anheuser Busch is one of the top beer producers with the following vitals to boast. 
-Head quartered in St Louis MO, the company brews more than 100 brands of beers with flag ship brands Budweiser and Budlight.
-The company also owns 23 breweries and has several craft partners to its credit. The company's revenue stands at 14 Billion dollars per year.
+Our client Anheuser-Busch is one of the top beer producers in the world with the following vitals to boast. 
+Head quartered in St. Louis MO, the company brews more than 100 brands of beers with flagship brands Budweiser and Bud Light.
+The company also owns 23 breweries and has several craft partners to its credit. The company's revenue stands at over 40 billion dollars per year.
 Currently the company is eager to introduce a new beer with optimum alcoholic content (ABV) and international bitterness units (IBU), so that they can compete with other breweries and position itself in the market with regards to pricing. 
 
 # Analysis
 
-To aid in our analysis, our client provided us with two highly relevant datasets. One dataset contains a list of 2410 craft beers brewed in the U.S., while the other contains information on 558 competing U.S. breweries. As we are using the programming language R to perform our analysis, we first have to load these datasets into R. In order to show some good analysis, we had cleaned up the data to show information where the data is available.
+Our client has requested answers to seven questions, which we will answer in turn. To aid in our analysis, our client provided us with two highly relevant datasets. One dataset contains a list of 2410 craft beers brewed in the United States, while the other contains information on 558 competing U.S. breweries.
 
 
 
@@ -36,11 +37,11 @@ Our client would first like to know how many breweries are present in each state
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
-The Figure 1 barchart shows the number of breweries categorized by states in the U.S. (plus District of Columbia). We see that Colorado leads with 47 breweries, followed by California and Michigan. 
+The barchart in Figure 1 shows the number of breweries categorized by states in the U.S. (plus District of Columbia). We see that Colorado leads with 47 breweries, followed by California, Michigan, Oregon, and Texas. 
 
 #### 2. Merge beer and breweries data
 
-To fully take advantage of the two datasets, we merge them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
+To fully take advantage of the two datasets, we merged them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
 
 <table class="table table-bordered" style="margin-left: auto; margin-right: auto;">
 <caption>Table 1: Beginning of Merged Data Frame</caption>
@@ -198,13 +199,13 @@ To fully take advantage of the two datasets, we merge them into one composite da
 </tbody>
 </table>
 
-Table 1 and Table 2 show the first and last six observations of the combined file, repectively, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers.
+Table 1 and Table 2 show the respective first and last six observations of the combined file, showing that the merge was a success. We notice that breweries are often repeated in this new dataset, since breweries often make multiple beers.
 
 #### 3. Report column NA's
 
-For our analysis, we would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
+For our analysis, our client would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /><table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 3: NA Counts</caption>
  <thead>
   <tr>
@@ -256,15 +257,17 @@ For our analysis, we would also like to know the number of NA's, i.e. missing va
 </tbody>
 </table>
 
-From Figure 2 and Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables. 
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+
+From Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables. Figure 2 gives an idea of the proportions of missing data between variables. Note that NAs constitute approximately 40% of the data for IBU measurements. Collecting these missing values could increase accuracy in the remainder of the analysis, though there is still adequate information for us to make relevant observations.
 
 #### 4. Median ABV and IBU by state
 
-We would now like to visualize the median alcohol content and bitterness for beers in each state. 
+We would now like to visualize the median alcohol content and bitterness for beers in each respective state. These median values will provide insight into the approximate middle ABV and IBU measurements for all the states.
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /><img src="CaseStudy1_files/figure-html/unnamed-chunk-5-2.png" style="display: block; margin: auto;" />
 
-The alcohol content in beers by consuming states are plotted in a geometric bar graph, capturing the highest to lowest alcohol by volume and bitterness index. We have two different plots, Figure 3 showing the median ABV and Figure 4 visualizing the median IBU. Note that South Dakota is missing from Figure 4, because there was no data available on bitterness of beers in that state.
+The alcohol content and bitterness in beers by consuming states are plotted in geometric barcharts, capturing the highest to lowest alcohol by volume and bitterness index. We have two different plots, Figure 3 showing the median ABV and Figure 4 visualizing the median IBU. Note that South Dakota is missing from Figure 4, because there was no data available on bitterness of beers in that state.
 
 #### 5. Maximum ABV and IBU
 
@@ -334,13 +337,13 @@ Next, we want to know the state that has the beer with the largest alcohol conte
 </tbody>
 </table>
 
-As seen from the Table 4, the state of Colorado has the maximum alcohol content for beers at 12.8%. In addition, from Table 5 we see that Oregon has the most bitter beer at 138 bitterness units.
+As seen from Table 4, the state of Colorado has the maximum alcohol content for beers at 0.128, or 12.8%. In addition, from Table 5 we see that Oregon has the most bitter beer at 138 bitterness units.
 
 #### 6. ABV summary statistics
 
-We will see the summary statistics of alcohol by volume for all beers in the United States.
+Here we will see the summary statistics of alcohol by volume for all beers in the United States, which may establish the most popular alcohol levels found in beer.
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /><table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Table 6: ABV Summary Statistics</caption>
  <thead>
   <tr>
@@ -380,9 +383,13 @@ We will see the summary statistics of alcohol by volume for all beers in the Uni
 </tbody>
 </table>
 
-The boxplot in Figure 5 and summary in Table 6 includes the minimum, median, mean, and maximum of alcohol by volume (ABV). In percentage of alcohol content these values represent 0.1%, 5.6% , 6% and 12.8% by volume, respectively.
+<img src="CaseStudy1_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+
+The summary in Table 6 includes the minimum, median, mean, and maximum of alcohol by volume. In percentages these values represent 0.1%, 5.6% , 6% and 12.8% alcohol by volume, respectively. The boxplot in Figure 5 references the distribution of ABV values. We see from the plot that the data have a slight right skew because of the outliers on the higher end, but the highest concentration of values is in the 5-7% alcohol content range.
 
 #### 7. IBU and ABV relationship
+
+Finally, we created a scatterplot to determine whether there is an apparent relationship between bitterness and alcohol content in beers. We also performed a statistical hypothesis test to indicate the existence and strength of a linear correlation between the variables. 
 
 <img src="CaseStudy1_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
@@ -400,8 +407,16 @@ The boxplot in Figure 5 and summary in Table 6 includes the minimum, median, mea
 ## 0.6706215
 ```
 
-The scatter plot in Figure 6 shows a moderately strong positive linear correlation between the IBU and ABV of beers, which is supported by the correlation coefficient of 0.67. As bitterness increases we see that the alcohol content generally increases as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on the data.
+The scatterplot in Figure 6 shows a moderately strong positive linear correlation between the IBU and ABV of beers. This is supported by the Pearson correlation coefficient of 0.67 and a very small *p*-value, indicating a significant linear relationship (*p* < 0.0001). As bitterness increases we see that alcohol content tends to increase as well, barring some outliers. The line drawn through the scatter plot represents the line of best fit, which enables us to predict alcohol content from a given bitterness level based on trends in the data.
 
 # Conclusion
 
-Considering the given information and the market trends thus analyzed so far, the conclusion is the CEO can take a decision on launching a new product in collaboration with the craft beer breweries. The new product should have optimum ABV and IBU to satisfy the current consumer trends in beer drinking as they prefer like light lagers and craft products.
+Considering the given results and the market trends analyzed thus far, the CEO of Anheuser-Busch can make an informed decision regarding the launch of a new product. Because the company is well-established and its brands are known to sell, we believe that they can initally introduce the product in the top 10 consuming and producing states where they will experience high sales rates. In addition, the new brew should have optimum ABV and IBU to satisfy the current consumer trends in beer drinking. Thus we recommend that the product follow the linear IBU and ABV relationship seen in Figure 6, since these types of beers continue to be brewed and sold. Finally, we believe that collaboration between Anheuser-Busch and other craft beer breweries would be benenficial, as such partnerships can assist in meeting local consumer needs and raising customer satisfaction. We are confident that making thoughtful product decisions, grounded by insights from data, will propel the company to success.
+
+# Presentation
+
+This write-up is supplemented by video presentations from both consultants of K n A Marketing. The links are provided below.
+
+Anand: TODO
+
+Kristen: TODO
