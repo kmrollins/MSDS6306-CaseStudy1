@@ -37,7 +37,7 @@ Currently the company is eager to introduce a new beer with optimum alcoholic co
 
 Our client has requested answers to seven questions, which we will answer in turn. To aid in our analysis, our client provided us with two highly relevant datasets. One dataset contains a list of 2410 craft beers brewed in the United States, while the other contains information on 558 competing U.S. breweries.
 
-```{r}
+```{r read_data}
 # Read in beer and brewery data files
 beers <- read.csv("DataFiles/beers.csv")
 breweries <- read.csv("DataFiles/breweries.csv")
@@ -47,7 +47,7 @@ breweries <- read.csv("DataFiles/breweries.csv")
 
 Our client would first like to know how many breweries are present in each state. This will give the company an idea of where their competition is geographically located.
 
-```{r fig.align="center"}
+```{r brewery_counts, fig.align="center"}
 # Count number of breweries in each state
 cdf <- plyr::count(breweries, 'State')
 names(cdf)<- c("State", "NumBreweries")
@@ -70,7 +70,7 @@ The barchart in Figure 1 shows the number of breweries categorized by states in 
 
 To fully take advantage of the two datasets, we merged them into one composite dataset. They can be combined because each beer is brewed at, or at least associated with, a particular brewery.
 
-```{r}
+```{r merge}
 # Merge data on brewery ID fields
 beer_data <- merge(breweries, beers, by.x='Brew_ID', by.y='Brewery_id', all=TRUE)
 # Rename ambiguous columns
@@ -93,7 +93,7 @@ Table 1 and Table 2 show the respective first and last six observations of the c
 
 For our analysis, our client would also like to know the number of NA's, i.e. missing values, in each column. In this way we can be aware that some inaccuracies might occur because not all of the data on each beer and brewery is available.
 
-```{r fig.align="center"}
+```{r column_nas, fig.align="center"}
 # Get all the NAs from beer data
 na_table <- sapply(beer_data, function(x) sum(is.na(x)))
 na_df <- as.data.frame(na_table)
@@ -116,7 +116,7 @@ From Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's
 
 We would now like to visualize the median alcohol content and bitterness for beers in each respective state. These median values will provide insight into the approximate middle ABV and IBU measurements for all the states.
 
-```{r fig.align="center"}
+```{r median_abv_ibu, fig.align="center"}
 # Get median values for each state, convert to data frames
 median_ABV <- tapply(beer_data$ABV, beer_data$State, median, na.rm=TRUE)
 median_IBU <- tapply(beer_data$IBU, beer_data$State, median, na.rm=TRUE)
@@ -152,7 +152,7 @@ The alcohol content and bitterness in beers by consuming states are plotted in g
 
 Next, we want to know the state that has the beer with the largest alcohol content, as well as the state containing the most bitter beer. 
 
-```{r}
+```{r max_abv_ibu}
 # Get top 3 beers for alcohol content
 max_ABV <- beer_data[order(beer_data$ABV, decreasing=TRUE), c("State", "Beer_Name", "ABV", "Brewery_Name")] %>% head(n=3)
 kbl <- kable(max_ABV, row.names=FALSE, caption="Table 4: Highest ABV")
@@ -170,7 +170,7 @@ As seen from Table 4, the state of Colorado has the maximum alcohol content for 
 
 Here we will see the summary statistics of alcohol by volume for all beers in the United States, which may establish the most popular alcohol levels found in beer.
 
-```{r fig.align="center"}
+```{r abv_summary, fig.align="center"}
 # Get summary statistics
 sum <- as.array(summary(beer_data$ABV)) %>% round(3)
 
@@ -193,7 +193,7 @@ The summary in Table 6 includes the minimum, median, mean, and maximum of alcoho
 
 Finally, we created a scatterplot to determine whether there is an apparent relationship between bitterness and alcohol content in beers. We also performed a statistical hypothesis test to indicate the existence and strength of a linear correlation between the variables. 
 
-```{r fig.align="center"}
+```{r scatter_abv_ibu, fig.align="center"}
 # Create scatterplot
 ggplot(beer_data, aes(x=IBU, y=ABV, color=IBU)) + 
   geom_point(size=1.3, na.rm=TRUE) + 

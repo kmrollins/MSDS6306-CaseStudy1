@@ -35,7 +35,7 @@ Our client has requested answers to seven questions, which we will answer in tur
 
 Our client would first like to know how many breweries are present in each state. This will give the company an idea of where their competition is geographically located.
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+<img src="CaseStudy1_files/figure-html/brewery_counts-1.png" style="display: block; margin: auto;" />
 
 The barchart in Figure 1 shows the number of breweries categorized by states in the U.S. (plus District of Columbia). We see that Colorado leads with 47 breweries, followed by California, Michigan, Oregon, and Texas. 
 
@@ -257,7 +257,7 @@ For our analysis, our client would also like to know the number of NA's, i.e. mi
 </tbody>
 </table>
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="CaseStudy1_files/figure-html/column_nas-1.png" style="display: block; margin: auto;" />
 
 From Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's in the IBU column. There are no null values for the remaining variables. Figure 2 gives an idea of the proportions of missing data between variables. Note that NAs constitute approximately 40% of the data for IBU measurements. Collecting these missing values could increase accuracy in the remainder of the analysis, though there is still adequate information for us to make relevant observations.
 
@@ -265,7 +265,7 @@ From Table 3 we see that there are 62 NA values in the ABV column, and 1005 NA's
 
 We would now like to visualize the median alcohol content and bitterness for beers in each respective state. These median values will provide insight into the approximate middle ABV and IBU measurements for all the states.
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /><img src="CaseStudy1_files/figure-html/unnamed-chunk-5-2.png" style="display: block; margin: auto;" />
+<img src="CaseStudy1_files/figure-html/median_abv_ibu-1.png" style="display: block; margin: auto;" /><img src="CaseStudy1_files/figure-html/median_abv_ibu-2.png" style="display: block; margin: auto;" />
 
 The alcohol content and bitterness in beers by consuming states are plotted in geometric barcharts, capturing the highest to lowest alcohol by volume and bitterness index. We have two different plots, Figure 3 showing the median ABV and Figure 4 visualizing the median IBU. Note that South Dakota is missing from Figure 4, because there was no data available on bitterness of beers in that state.
 
@@ -383,7 +383,7 @@ Here we will see the summary statistics of alcohol by volume for all beers in th
 </tbody>
 </table>
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="CaseStudy1_files/figure-html/abv_summary-1.png" style="display: block; margin: auto;" />
 
 The summary in Table 6 includes the minimum, median, mean, and maximum of alcohol by volume. In percentages these values represent 0.1%, 5.6% , 6% and 12.8% alcohol by volume, respectively. The boxplot in Figure 5 references the distribution of ABV values. We see from the plot that the data have a slight right skew because of the outliers on the higher end, but the highest concentration of values is in the 5-7% alcohol content range.
 
@@ -391,7 +391,7 @@ The summary in Table 6 includes the minimum, median, mean, and maximum of alcoho
 
 Finally, we created a scatterplot to determine whether there is an apparent relationship between bitterness and alcohol content in beers. We also performed a statistical hypothesis test to indicate the existence and strength of a linear correlation between the variables. 
 
-<img src="CaseStudy1_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="CaseStudy1_files/figure-html/scatter_abv_ibu-1.png" style="display: block; margin: auto;" />
 
 ```
 ## 
