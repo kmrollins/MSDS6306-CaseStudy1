@@ -77,9 +77,7 @@ We used the R programming language to code solutions to these questions. We also
 #### Session info:
 
 R version 3.5.1 (2018-07-02)
-
 Platform: x86_64-apple-darwin15.6.0 (64-bit)
-
 Running under: macOS High Sierra 10.13.6
 
 #### R packages used:
