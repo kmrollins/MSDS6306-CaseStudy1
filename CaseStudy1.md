@@ -417,6 +417,6 @@ Considering the given results and the market trends analyzed thus far, the CEO o
 
 This write-up is supplemented by video presentations from both consultants of K n A Marketing. The links are provided below.
 
-Anand: Powerpoint presentation click here [link](https://youtu.be/YwA7hsq_Fx0)
+Anand: Presentation of powerpoint slides video on YouTube - [link](https://youtu.be/YwA7hsq_Fx0)
 
-Kristen: TODO
+Kristen: Video presentation [link](https://youtu.be/O4ApbhmVJ_E)
