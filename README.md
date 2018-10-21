@@ -37,7 +37,7 @@ As we performed our analysis in R, we used the *knitr* package to combine the co
 
 # Contributors
 
-The sole contributors for this project are Anand Rajan and Kristen McCrary. Here we detail what each contributor worked on within the project.
+The contributors for this project are Anand Rajan and Kristen McCrary. Here we detail what each contributor worked on within the project.
 
 **Anand:**
 
@@ -87,6 +87,6 @@ By performing data analysis to answer relevant questions presented in the study,
 
 The write-up for this study is supplemented by video presentations from both consultants of K n A Marketing. The links are provided below.
 
-Anand: For Video presentation here is the [link](https://youtu.be/YwA7hsq_Fx0)
+Anand: Video presentation [link](https://youtu.be/YwA7hsq_Fx0)
 
-Kristen: TODO
+Kristen: Video presentation [link](https://youtu.be/O4ApbhmVJ_E)
